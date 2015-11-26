@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<language code="NL" name="Nederlands">
+
+  <buttons>
+    <button id="cancel">&Annuleer</button>
+    <button id="retry">&Nogmaals</button>
+    <button id="continue">&Verder</button>
+    <button id="yes">&Ja</button>
+    <button id="no">&Nee</button>
+    <button id="abort">&Afbreken</button>
+    <button id="ignore">&Negeren</button>
+    <button id="ok">&OK</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">Een nieuwe versie is beschikbaar.</label>
+    <label id="2">Hierin worden fouten verholpen en/of nieuwe functies toegevoegd.
+Installatie hiervan is verplicht.
+
+Wil je deze installatie nu uitvoeren ?</label>
+    <label id="3">Kleine programma en/of vertaal fouten worden hiermee verholpen.
+
+Wil je de installatie uitvoeren ?</label>
+    <label id="4">Bijwerken...</label>
+    <label id="5">Downloaden van componenten mislukt!</label>
+    <label id="6">bijgewerkt!</label>
+    <label id="7">Nieuwe versie:</label>
+    <label id="8">is (n) dagen offline geweest</label>
+    <label id="9">Het moet worden aangesloten om te controleren op mogelijk verplichte updates.</label>
+    <label id="10">Probeer de volgende keer dat je het programma opstart aangesloten te zijn op Internet.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Welkom bij</label>
+    <label id="2">Je bent hier voor het eerst, kies a.u.b. een doelfolder waar je APK's zullen worden aangemaakt:</label>
+    <label id="3">Selecteer</label>
+    <label id="4">Geen folder geselecteerd</label>
+    <label id="6">Volgende</label>
+    <label id="11">APKs doelfolder</label>
+    <label id="12">kies deze folder</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">Nieuw project</label>
+    <label id="2">Leeg</label>
+    <label id="6">Doelfolder:</label>
+    <label id="7">Verander</label>
+    <label id="8">Over</label>
+    <label id="9">APKs doelfolder</label>
+    <label id="10">kies deze folder</label>
+    <label id="11">maak</label>
+    <label id="12">verander</label>
+    <label id="13">installeer</label>
+    <label id="14">dit project verwijderen?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Lokaal programma en hulpbronnen</label>
+    <label id="2">Als je lokaal een BASIC! programma en hulpbronnen wilt compileren in een APK, copieer dan de benodigde bestanden naar EXACT DEZELFDE folders en subfolders zoals ze op je Android toestel staan: je main.bas in "[b]XXX\rfo-basic\source\[/b]" en je hulpbronnen in "[b]XXX\rfo-basic\data\[/b]" of waar je ze ook in hebt gezet.
+
+Er zijn meerdere gevallen, waarin je een APK zou willen maken van een BASIC! programma en hulpbronnen die *niet* op je Android toestel staan:
+- je kunt direct op je computer intikken en ontwikkelen en testen via de RFO-BASIC! Launcher
+- of het zou kunnen zijn dat RFO-BASIC! Quick APK problemen heeft met de communicatie met je Android toestel, zowel via WiFi als met een USB kabel</label>
+    <label id="3">Let op: je doelfolder is op deze lokatie:</label>
+    <label id="5">Terug</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">WiFi verbinding</label>
+    <label id="2">Je moet de QuickAPK WiFi app geinstalleerd en gestart hebben op je Android toestel (dit mag zowel in voorgrond als achtergrond draaien) en WiFi moet aanstaan.
+
+Ook moeten zowel je computer als je Android toestel op hetzelfde LAN zijn aangesloten (meestal je thuisnetwerk) zodat ze elkaar automatisch kunnen vinden.</label>
+    <label id="3">De QuickAPK WiFi app voor Android kun je hier downloaden:</label>
+    <label id="5">Terug</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">USB kabel aansluiting</label>
+    <label id="2">De "USB-foutopsporing" moet worden aangezet op je toestel:
+Vanaf Android 4.2 en nieuwere versies, kan dit gedaan worden door te gaan naar Instellingen > Toestel-info en 7 keer te tikken op de regel "Buildnummer" om de Ontwikkelaarsopties te activeren (in Android versies voor 4.2 staan de Ontwikkelaarsopties al in het Instellingen scherm). Kies Ontwikkelaarsopties en zet USB-foutopsporing aan.
+
+Ook dient je toestel correct te worden herkend door je computer, oftewel de juiste stuurprogramma's van de fabrikant moeten zijn geinstalleerd. Meestal betekent dit installatie van de PC suite van de fabrikant (b.v. Samsung Kies, Sony PC Companion, enz.)</label>
+    <label id="3">Terug</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analyzeren lokaal file systeem...</label>
+    <label id="2">Detecteren van aangesloten toestel...</label>
+    <label id="3">Geen aangesloten toestel gevonden. Klik a.u.b. op een van onderstaande knoppen</label>
+    <label id="4">RFO-BASIC! niet gevonden op je toestel. Installeer het en probeer het nog een keer.</label>
+    <label id="5">Vorige</label>
+    <label id="6">Nogmaals</label>
+    <label id="7">Volgende</label>
+    <label id="8">Gevonden een</label>
+    <label id="9">Analyzeren bestandssysteem van toestel...</label>
+    <label id="10">Toegang tot lokale bronnen op PC</label>
+    <label id="11">Toegang toestel bronnen via WiFi</label>
+    <label id="12">Toegang toestel bronnen via USB</label>
+    <label id="13">lees mij</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Kies je programma en folder/bestanden met hulpbronnen:</label>
+    <label id="3">Geen .bas gevonden in "XXX\rfo-basic\source\"</label>
+    <label id="4">folder(s)</label>
+    <label id="5">bestand(en)</label>
+    <label id="6">geselecteerd</label>
+    <label id="7">Vorige</label>
+    <label id="8">Ververs</label>
+    <label id="9">Volgende</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Detecteren van aangesloten toestel...</label>
+    <label id="2">Copieren bestanden van de</label>
+    <label id="12">naar de computer...</label>
+    <label id="3">Fout: toestel niet meer aangesloten!</label>
+    <label id="4">Vorige</label>
+    <label id="5">Nogmaals</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Details van je app</label>
+    <label id="2">Naam</label>
+    <label id="4">Versie</label>
+    <label id="6">Icoon (klik op het plaatje of sleep er eentje op)</label>
+    <label id="7">Wijzig icoon</label>
+    <label id="8">Standaard</label>
+    <label id="9">Toon uitgebreide opties op het volgende scherm</label>
+    <label id="10">Vorige</label>
+    <label id="11">Volgende</label>
+    <label id="12">Gebruik een vierkant plaatje</label>
+    <label id="13">Een(1) plaatje a.u.b.</label>
+    <label id="14">Geen ondersteund beeldformaat</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">uitgebreide opties</label>
+    <label id="2">App folder</label>
+    <label id="4">Package naam</label>
+    <label id="6">Versie code</label>
+    <label id="8">Console titel</label>
+    <label id="10">Invoer prompt</label>
+    <label id="12">Certificaat</label>
+    <label id="13">Encrypt .bas files</label>
+    <label id="14">Activeer Hardware Versnelling</label>
+    <label id="16">Maak</label>
+    <label id="29">tijdens installatie</label>
+    <label id="18">Auto-start je app tijdens opstarten van je toestel</label>
+    <label id="19">Welkom scherm / Laden</label>
+    <label id="20">Permissies</label>
+    <label id="21">Console uiterlijk</label>
+    <label id="22">Copieer bronnen naar SD</label>
+    <label id="23">Vorige</label>
+    <label id="24">Volgende</label>
+    <label id="25">Gebruik standaard</label>
+    <label id="26">Gebruik een andere</label>
+    <label id="27">Maak een nieuwe</label>
+    <label id="30">Zet console terug naar standaard uiterlijk</label>
+    <label id="31">Lettergrootte</label>
+    <label id="32">Klein</label>
+    <label id="33">Middel</label>
+    <label id="34">Groot</label>
+    <label id="35">Lettertype</label>
+    <label id="36">Scherm Orientatie</label>
+    <label id="37">Overlaten Aan Sensoren</label>
+    <label id="38">Landschap vast</label>
+    <label id="39">Omgekeerd Landschap vast</label>
+    <label id="40">Portret vast</label>
+    <label id="41">Omgekeerd Portret vast</label>
+    <label id="42">Gebruik Lijnen in Console</label>
+    <label id="43">Kleuren:</label>
+    <label id="44">Voorgrond</label>
+    <label id="45">Achtergrond</label>
+    <label id="46">Leeg</label>
+    <label id="47">Annuleer</label>
+    <label id="48">OK</label>
+    <label id="49">Autodetect</label>
+    <label id="50">Selecteer alles/niets ...</label>
+    <label id="51">Het opgegeven Alias en/of Wachtwoord zijn incorrect voror deze keystore, probeer nogmaals:</label>
+    <label id="52">Voer het Alias en Wachtwoord in voor deze keystore:</label>
+    <label id="53">Alias:</label>
+    <label id="54">Wachtwoord:</label>
+    <label id="55">Bevestig:</label>
+    <label id="56">Je moet een niet-leeg Alias en Wachtwoord opgeven</label>
+    <label id="57">Wachtwoorden komen niet overeen</label>
+    <label id="58">Certificaat wachtwoorden mogen alleen de karakters A t/m Z, a t/m z, 0 t/m 9 en _ $ # bevatten</label>
+    <label id="59">Een bestand met die naam bestaat al. Vervangen?</label>
+    <label id="60">Je certificaat is succesvol aangemaakt</label>
+    <label id="61">Er was een probleem tijdens het aanmaken van je certificaat:</label>
+    <label id="62">Je naam voluit:</label>
+    <label id="63">De naam van je organisatie:</label>
+    <label id="64">De afdeling van je organisatie:</label>
+    <label id="65">Woonplaats:</label>
+    <label id="66">Provincie:</label>
+    <label id="67">Je 2-letterige land code:</label>
+    <label id="68">Boodschap</label>
+    <label id="69">Laad indicator</label>
+    <label id="70">Let op: het activeren van hardware versnelling zal het grafisch renderen verbeteren met factor 2 tot 10, maar kan ook neveneffecten introduceren: anti-alias glinsteringen in gradienten, het GR.SAVE commando werkt niet, enz.
+
+Als je niet zeker bent van de gevolgen, zet dan hardware versnelling liever uit...</label>
+    <label id="71">Tekst voortgang</label>
+    <label id="72">Grafisch welkom scherm</label>
+    <label id="73">Ander plaatje</label>
+    <label id="74">Achtergrond kleur</label>
+    <label id="75">Standaard instelingen</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">APK wordt gemaakt...</label>
+    <label id="3">Vorige</label>
+    <label id="4">installeer hem op je Android toestel via WiFi</label>
+    <label id="5">installeer hem op je Android toestel via USB</label>
+    <label id="6">open de folder op je computer</label>
+    <label id="7">nog een APK maken van een programma</label>
+    <label id="8">Einde</label>
+    <label id="10">Wil je dat Quick APK de lokale app bronnen in je home directory verhuist van "rfo-basic\data" naar een aparte folder "XXX" ?</label>
+    <label id="13">Sorry! Wij zijn een probleem tegen gekomen bij het maken van je APK... Wat wil je doen?</label>
+    <label id="14">Gefeliciteerd, het maken van je APK is geslaagd! Wat wil je nu doen?</label>
+    <label id="16">Bezig met installatie van je APK...</label>
+    <label id="17">Applikatie geinstalleerd. Opstarten op op je toestel?</label>
+    <label id="18">Installatie mislukt:</label>
+    <label id="20">De foutmelding bekijken</label>
+    <label id="21">De easyapk folder openen om te debuggen</label>
+    <label id="22">Start informatieve build op de commando regel</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Terug</label>
+  </screen>
+
+</language>

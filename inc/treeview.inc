@@ -1,0 +1,1245 @@
+'==============================================================================
+' TREEVIEW CONTROL
+
+%UM_CHECKSTATECHANGE = %WM_USER + 100
+
+#IF NOT %DEF(%NOTREEVIEW)
+
+$WC_TREEVIEW        = "SysTreeView32"
+$$WC_TREEVIEW       = "SysTreeView32"$$
+
+#IF %DEF(%WIN32)
+#IF %DEF(%UNICODE)
+MACRO WC_TREEVIEW=$$WC_TREEVIEW
+#ELSE
+MACRO WC_TREEVIEW=$WC_TREEVIEW
+#ENDIF
+#ELSE
+MACRO WC_TREEVIEW = "SysTreeView"
+#ENDIF
+
+' begin_r_commctrl
+
+%TV_FIRST               = &H1100      ' TreeView messages
+%TVN_FIRST               = 0-400       ' treeview
+%TVN_LAST                = 0-499
+
+%CCM_FIRST              = &H2000      ' Common control shared messages
+%CCM_LAST               = %CCM_FIRST + &H200
+%CCM_SETBKCOLOR         = %CCM_FIRST + 1 ' lParam is bkColor
+%CCM_SETCOLORSCHEME     = %CCM_FIRST + 2 ' lParam is color scheme
+%CCM_GETCOLORSCHEME     = %CCM_FIRST + 3 ' fills in COLORSCHEME pointed to by lParam
+%CCM_GETDROPTARGET      = %CCM_FIRST + 4
+%CCM_SETUNICODEFORMAT   = %CCM_FIRST + 5
+%CCM_GETUNICODEFORMAT   = %CCM_FIRST + 6
+
+%TVS_HASBUTTONS      = &H00000001
+%TVS_HASLINES        = &H00000002
+%TVS_LINESATROOT     = &H00000004
+%TVS_EDITLABELS      = &H00000008
+%TVS_DISABLEDRAGDROP = &H00000010
+%TVS_SHOWSELALWAYS   = &H00000020
+%TVS_RTLREADING      = &H00000040
+%TVS_NOTOOLTIPS      = &H00000080
+%TVS_CHECKBOXES      = &H00000100
+%TVS_TRACKSELECT     = &H00000200
+%TVS_SINGLEEXPAND    = &H00000400
+%TVS_INFOTIP         = &H00000800
+%TVS_FULLROWSELECT   = &H00001000
+%TVS_NOSCROLL        = &H00002000
+%TVS_NONEVENHEIGHT   = &H00004000
+%TVS_NOHSCROLL       = &H00008000  ' %TVS_NOSCROLL overrides this
+
+' end_r_commctrl
+
+%TVIF_TEXT           = &H0001
+%TVIF_IMAGE          = &H0002
+%TVIF_PARAM          = &H0004
+%TVIF_STATE          = &H0008
+%TVIF_HANDLE         = &H0010
+%TVIF_SELECTEDIMAGE  = &H0020
+%TVIF_CHILDREN       = &H0040
+%TVIF_INTEGRAL       = &H0080
+
+%TVIS_SELECTED       = &H0002
+%TVIS_CUT            = &H0004
+%TVIS_DROPHILITED    = &H0008
+%TVIS_BOLD           = &H0010
+%TVIS_EXPANDED       = &H0020
+%TVIS_EXPANDEDONCE   = &H0040
+%TVIS_EXPANDPARTIAL  = &H0080
+
+%TVIS_OVERLAYMASK    = &H00F00
+%TVIS_STATEIMAGEMASK = &H0F000
+%TVIS_USERMASK       = &H0F000
+
+#IF (%WIN32_IE >= &H0600)
+%TVIS_EX_FLAT        = &H0001
+#IF (%WIN32_WINNT >= &H0600)
+%TVIS_EX_DISABLED    = &H0002
+#ENDIF
+%TVIS_EX_ALL         = &H0002
+
+' Structure for TreeView's NM_TVSTATEIMAGECHANGING notification
+TYPE NMTVSTATEIMAGECHANGING
+    hdr                 AS NMHDR
+    hti                 AS DWORD  ' HTREEITEM
+    iOldStateImageIndex AS LONG
+    iNewStateImageIndex AS LONG
+END TYPE
+#ENDIF  ' #IF (%WIN32_IE >= &H0600)
+
+%I_CHILDRENCALLBACK  = -1
+
+TYPE TVITEMA
+    mask           AS DWORD
+    hItem          AS DWORD   ' HTREEITEM
+    STATE          AS DWORD
+    stateMask      AS DWORD
+    pszText        AS ASCIIZ PTR
+    cchTextMax     AS LONG
+    iImage         AS LONG
+    iSelectedImage AS LONG
+    cChildren      AS LONG
+    lParam         AS LONG
+END TYPE
+
+TYPE TVITEMW
+    mask           AS DWORD
+    hItem          AS DWORD   ' HTREEITEM
+    STATE          AS DWORD
+    stateMask      AS DWORD
+    pszText        AS WSTRINGZ PTR
+    cchTextMax     AS LONG
+    iImage         AS LONG
+    iSelectedImage AS LONG
+    cChildren      AS LONG
+    lParam         AS LONG
+END TYPE
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_ITEMW
+    TVITEMW
+END TYPE
+TYPE TV_ITEMA
+    TVITEMA
+END TYPE
+#ELSE
+TYPE TVITEMA
+    TV_ITEMA
+END TYPE
+TYPE TVITEMW
+    TV_ITEMW
+END TYPE
+#ENDIF
+
+#IF (%WIN32_IE >= &H0400)
+
+' only used for Get and Set messages.  no notifies
+
+TYPE TVITEMEXA
+    mask           AS DWORD
+    hItem          AS DWORD
+    STATE          AS DWORD
+    stateMask      AS DWORD
+    pszText        AS ASCIIZ PTR
+    cchTextMax     AS LONG
+    iImage         AS LONG
+    iSelectedImage AS LONG
+    cChildren      AS LONG
+    lParam         AS LONG
+    iIntegral      AS LONG
+#IF (%WIN32_IE >= &H0600)
+    uStateEx       AS DWORD
+    hwnd           AS DWORD
+    iExpandedImage AS LONG
+#ENDIF
+#IF (%NTDDI_VERSION >= %NTDDI_WIN7)
+    iReserved      AS LONG
+#ENDIF
+END TYPE
+
+TYPE TVITEMEXW
+    mask           AS DWORD
+    hItem          AS DWORD
+    STATE          AS DWORD
+    stateMask      AS DWORD
+    pszText        AS WSTRINGZ PTR
+    cchTextMax     AS LONG
+    iImage         AS LONG
+    iSelectedImage AS LONG
+    cChildren      AS LONG
+    lParam         AS LONG
+    iIntegral      AS LONG
+#IF (%WIN32_IE >= &H0600)
+    uStateEx       AS DWORD
+    hwnd           AS DWORD
+    iExpandedImage AS LONG
+#ENDIF
+#IF (%NTDDI_VERSION >= %NTDDI_WIN7)
+    iReserved      AS LONG
+#ENDIF
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE TVITEMEX
+    TVITEMEXW
+END TYPE
+#ELSE
+TYPE TVITEMEX
+    TVITEMEXA
+END TYPE
+#ENDIF
+
+#ENDIF  ' #IF (%WIN32_IE >= &H0400)
+
+#IF %DEF(%UNICODE)
+TYPE TVITEM
+    TVITEMW
+END TYPE
+#ELSE
+TYPE TVITEM
+    TVITEMA
+END TYPE
+#ENDIF
+
+TYPE TV_ITEM
+    TVITEM
+END TYPE
+
+%TVI_ROOT               = &HFFFF0000???   '((HTREEITEM)(ULONG_PTR)-0x10000)
+%TVI_FIRST              = &HFFFF0001???   '((HTREEITEM)(ULONG_PTR)-0x0FFFF)
+%TVI_LAST               = &HFFFF0002???   '((HTREEITEM)(ULONG_PTR)-0x0FFFE)
+%TVI_SORT               = &HFFFF0003???   '((HTREEITEM)(ULONG_PTR)-0x0FFFD)
+
+%TVINSERTSTRUCTA_V1_SIZE = 48 ' CCSIZEOF_STRUCT(TVINSERTSTRUCTA, item)
+%TVINSERTSTRUCTW_V1_SIZE = 48 ' CCSIZEOF_STRUCT(TVINSERTSTRUCTW, item)
+
+UNION TVINSERTSTRUCTA_union
+    itemex AS TVITEMEXA
+    Item   AS TV_ITEMA
+END UNION
+
+TYPE TVINSERTSTRUCTA
+    hParent      AS DWORD
+    hInsertAfter AS DWORD
+#IF (%WIN32_IE >= &H0400)
+    TVINSERTSTRUCTA_union
+#ELSE
+    Item         AS TV_ITEMA
+#ENDIF
+END TYPE
+
+UNION TVINSERTSTRUCTW_union
+    itemex AS TVITEMEXW
+    Item   AS TV_ITEMW
+END UNION
+
+TYPE TVINSERTSTRUCTW
+    hParent      AS DWORD
+    hInsertAfter AS DWORD
+#IF (%WIN32_IE >= &H0400)
+    TVINSERTSTRUCTW_union
+#ELSE
+    Item         AS TV_ITEMW
+#ENDIF
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE TVINSERTSTRUCT
+    TVINSERTSTRUCTW
+END TYPE
+%TVINSERTSTRUCT_V1_SIZE = %TVINSERTSTRUCTW_V1_SIZE
+#ELSE
+TYPE TVINSERTSTRUCT
+    TVINSERTSTRUCTW
+END TYPE
+%TVINSERTSTRUCT_V1_SIZE = %TVINSERTSTRUCTA_V1_SIZE
+#ENDIF
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_INSERTSTRUCTA
+    TVINSERTSTRUCTA
+END TYPE
+TYPE TV_INSERTSTRUCTW
+    TVINSERTSTRUCTW
+END TYPE
+#ELSE
+TYPE TVINSERTSTRUCTA
+    TV_INSERTSTRUCTA
+END TYPE
+TYPE TVINSERTSTRUCTW
+    TV_INSERTSTRUCTW
+END TYPE
+#ENDIF
+
+TYPE TV_INSERTSTRUCT
+    TVINSERTSTRUCT
+END TYPE
+
+%TVM_INSERTITEMA        = %TV_FIRST
+%TVM_INSERTITEMW        = %TV_FIRST + 50
+#IF %DEF(%UNICODE)
+%TVM_INSERTITEM = %TVM_INSERTITEMW
+#ELSE
+%TVM_INSERTITEM = %TVM_INSERTITEMA
+#ENDIF
+
+FUNCTION TreeView_InsertItem (BYVAL hWnd AS DWORD, lpis AS TV_INSERTSTRUCT) _
+    AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_INSERTITEM, 0, VARPTR(lpis))
+END FUNCTION
+
+%TVM_DELETEITEM         = %TV_FIRST + 1
+
+FUNCTION TreeView_DeleteItem (BYVAL hWnd AS DWORD, BYVAL hitem AS DWORD) AS LONG
+    FUNCTION = SendMessage(hWnd, %TVM_DELETEITEM, 0, hitem)
+END FUNCTION
+
+FUNCTION TreeView_DeleteAllItems (BYVAL hWnd AS DWORD) AS LONG
+    FUNCTION = SendMessage(hWnd, %TVM_DELETEITEM, 0, %TVI_ROOT)
+END FUNCTION
+
+%TVM_EXPAND             = %TV_FIRST + 2
+
+FUNCTION TreeView_Expand (BYVAL hWnd AS DWORD, BYVAL hitem AS DWORD, _
+    BYVAL dFlag AS DWORD) AS LONG
+    FUNCTION = SendMessage(hWnd, %TVM_EXPAND, dFlag, hitem)
+END FUNCTION
+
+%TVE_COLLAPSE           = &H00000001
+%TVE_EXPAND             = &H00000002
+%TVE_TOGGLE             = &H00000003
+#IF (%WIN32_IE >= &H0300)
+%TVE_EXPANDPARTIAL      = &H00004000
+#ENDIF
+%TVE_COLLAPSERESET      = &H00008000
+
+%TVM_GETITEMRECT        = %TV_FIRST + 4
+
+FUNCTION TreeView_GetItemRect (BYVAL hWnd AS DWORD, BYVAL hItem AS DWORD, _
+    prc AS RECT, BYVAL CODE AS LONG) AS LONG
+    prc.nLeft = hItem
+    FUNCTION = SendMessage(hWnd, %TVM_GETITEMRECT, CODE, VARPTR(prc))
+END FUNCTION
+
+%TVM_GETCOUNT           = %TV_FIRST + 5
+
+FUNCTION TreeView_GetCount (BYVAL hWnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_GETCOUNT, 0, 0)
+END FUNCTION
+
+%TVM_GETINDENT          = %TV_FIRST + 6
+
+FUNCTION TreeView_GetIndent (BYVAL hWnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_GETINDENT, 0, 0)
+END FUNCTION
+
+%TVM_SETINDENT          = %TV_FIRST + 7
+
+FUNCTION TreeView_SetIndent (BYVAL hWnd AS DWORD, BYVAL indent AS DWORD) AS LONG
+    FUNCTION = SendMessage(hWnd, %TVM_SETINDENT, indent, 0)
+END FUNCTION
+
+%TVM_GETIMAGELIST       = %TV_FIRST + 8
+
+FUNCTION TreeView_GetImageList (BYVAL hWnd AS DWORD, BYVAL iImage AS LONG) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_GETIMAGELIST, iImage, 0)
+END FUNCTION
+
+%TVSIL_NORMAL           = 0
+%TVSIL_STATE            = 2
+
+%TVM_SETIMAGELIST       = %TV_FIRST + 9
+
+FUNCTION TreeView_SetImageList (BYVAL hWnd AS DWORD, BYVAL himl AS DWORD, _
+    BYVAL iImage AS LONG) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_SETIMAGELIST, iImage, himl)
+END FUNCTION
+
+%TVM_GETNEXTITEM        = %TV_FIRST + 10
+
+FUNCTION TreeView_GetNextItem (BYVAL hWnd AS DWORD, BYVAL hitem AS DWORD, _
+    BYVAL CODE AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_GETNEXTITEM, CODE, hitem)
+END FUNCTION
+
+%TVGN_ROOT              = &H0000
+%TVGN_NEXT              = &H0001
+%TVGN_PREVIOUS          = &H0002
+%TVGN_PARENT            = &H0003
+%TVGN_CHILD             = &H0004
+%TVGN_FIRSTVISIBLE      = &H0005
+%TVGN_NEXTVISIBLE       = &H0006
+%TVGN_PREVIOUSVISIBLE   = &H0007
+%TVGN_DROPHILITE        = &H0008
+%TVGN_CARET             = &H0009
+#IF (%WIN32_IE >= &H0400)
+%TVGN_LASTVISIBLE       = &H000A
+#ENDIF
+#IF (%WIN32_IE >= &H0600)
+%TVGN_NEXTSELECTED      = &H000B
+#ENDIF
+
+#IF (%WIN32_WINNT >= &H0501)
+%TVSI_NOSINGLEEXPAND    = &H8000?? ' Should not conflict with TVGN flags.
+#ENDIF
+
+FUNCTION TreeView_GetChild (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_CHILD)
+END FUNCTION
+
+FUNCTION TreeView_GetNextSibling (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_NEXT)
+END FUNCTION
+
+FUNCTION TreeView_GetPrevSibling (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_PREVIOUS)
+END FUNCTION
+
+FUNCTION TreeView_GetParent (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_PARENT)
+END FUNCTION
+
+FUNCTION TreeView_GetFirstVisible (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, %NULL, %TVGN_FIRSTVISIBLE)
+END FUNCTION
+
+FUNCTION TreeView_GetNextVisible (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_NEXTVISIBLE)
+END FUNCTION
+
+FUNCTION TreeView_GetPrevVisible (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_PREVIOUSVISIBLE)
+END FUNCTION
+
+FUNCTION TreeView_GetSelection (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, %NULL, %TVGN_CARET)
+END FUNCTION
+
+FUNCTION TreeView_GetDropHilight (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, %NULL, %TVGN_DROPHILITE)
+END FUNCTION
+
+FUNCTION TreeView_GetRoot (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, %NULL, %TVGN_ROOT)
+END FUNCTION
+#IF (%WIN32_IE >= &H0400)
+FUNCTION TreeView_GetLastVisible (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, %NULL, %TVGN_LASTVISIBLE)
+END FUNCTION
+#ENDIF
+#IF (%WIN32_IE >= &H0600)
+FUNCTION TreeView_GetNextSelected (BYVAL hwnd AS DWORD, hitem AS DWORD) AS DWORD
+    FUNCTION = TreeView_GetNextItem(hwnd, hitem, %TVGN_NEXTSELECTED)
+END FUNCTION
+#ENDIF
+
+%TVM_SELECTITEM         = %TV_FIRST + 11
+
+FUNCTION TreeView_Select (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD, _
+    BYVAL nCode AS LONG) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SELECTITEM, nCode, hitem)
+END FUNCTION
+
+FUNCTION TreeView_SelectItem (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) AS LONG
+    FUNCTION = TreeView_Select(hwnd, hitem, %TVGN_CARET)
+END FUNCTION
+
+FUNCTION TreeView_SelectDropTarget (BYVAL hwnd AS DWORD, _
+    BYVAL hitem AS DWORD) AS LONG
+    FUNCTION = TreeView_Select(hwnd, hitem, %TVGN_DROPHILITE)
+END FUNCTION
+
+FUNCTION TreeView_SelectSetFirstVisible (BYVAL hwnd AS DWORD, _
+    BYVAL hitem AS DWORD) AS LONG
+    FUNCTION = TreeView_Select(hwnd, hitem, %TVGN_FIRSTVISIBLE)
+END FUNCTION
+
+%TVM_GETITEMA           = %TV_FIRST + 12
+%TVM_GETITEMW           = %TV_FIRST + 62
+
+#IF %DEF(%UNICODE)
+%TVM_GETITEM = %TVM_GETITEMW
+#ELSE
+%TVM_GETITEM = %TVM_GETITEMA
+#ENDIF
+
+FUNCTION TreeView_GetItem (BYVAL hwnd AS DWORD, pitem AS TV_ITEM) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_GETITEM, 0, VARPTR(pitem))
+END FUNCTION
+
+%TVM_SETITEMA           = %TV_FIRST + 13
+%TVM_SETITEMW           = %TV_FIRST + 63
+
+#IF %DEF(%UNICODE)
+%TVM_SETITEM = %TVM_SETITEMW
+#ELSE
+%TVM_SETITEM = %TVM_SETITEMA
+#ENDIF
+
+FUNCTION TreeView_SetItem (BYVAL hwnd AS DWORD, pitem AS TV_ITEM) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETITEM, 0, VARPTR(pitem))
+END FUNCTION
+
+%TVM_EDITLABELA         = %TV_FIRST + 14
+%TVM_EDITLABELW         = %TV_FIRST + 65
+
+#IF %DEF(%UNICODE)
+%TVM_EDITLABEL = %TVM_EDITLABELW
+#ELSE
+%TVM_EDITLABEL = %TVM_EDITLABELA
+#ENDIF
+
+FUNCTION TreeView_EditLabel (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_EDITLABEL, 0, hitem)
+END FUNCTION
+
+%TVM_GETEDITCONTROL     = %TV_FIRST + 15
+
+FUNCTION TreeView_GetEditControl (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETEDITCONTROL, 0, 0)
+END FUNCTION
+
+%TVM_GETVISIBLECOUNT    = %TV_FIRST + 16
+
+FUNCTION TreeView_GetVisibleCount (BYVAL hWnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hWnd, %TVM_GETVISIBLECOUNT, 0, 0)
+END FUNCTION
+
+%TVM_HITTEST            = %TV_FIRST + 17
+
+TYPE TVHITTESTINFO
+    pt    AS POINT
+    flags AS DWORD
+    hItem AS DWORD  ' HTREEITEM
+END TYPE
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_HITTESTINFO
+    TVHITTESTINFO
+END TYPE
+#ELSE
+TYPE TVHITTESTINFO
+    TV_HITTESTINFO
+END TYPE
+#ENDIF
+
+FUNCTION TreeView_HitTest (BYVAL hwnd AS DWORD, lpht AS TV_HITTESTINFO) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_HITTEST, 0, VARPTR(lpht))
+END FUNCTION
+
+
+%TVHT_NOWHERE           = &H0001
+%TVHT_ONITEMICON        = &H0002
+%TVHT_ONITEMLABEL       = &H0004
+%TVHT_ONITEMINDENT      = &H0008
+%TVHT_ONITEMBUTTON      = &H0010
+%TVHT_ONITEMRIGHT       = &H0020
+%TVHT_ONITEMSTATEICON   = &H0040
+
+%TVHT_ABOVE             = &H0100
+%TVHT_BELOW             = &H0200
+%TVHT_TORIGHT           = &H0400
+%TVHT_TOLEFT            = &H0800
+
+%TVHT_ONITEM            = %TVHT_ONITEMICON OR %TVHT_ONITEMLABEL OR %TVHT_ONITEMSTATEICON
+
+%TVM_CREATEDRAGIMAGE    = %TV_FIRST + 18
+
+FUNCTION TreeView_CreateDragImage (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_CREATEDRAGIMAGE, 0, hitem)
+END FUNCTION
+
+%TVM_SORTCHILDREN       = %TV_FIRST + 19
+
+FUNCTION TreeView_SortChildren (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD, _
+    BYVAL recurse AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SORTCHILDREN, recurse, hitem)
+END FUNCTION
+
+%TVM_ENSUREVISIBLE      = %TV_FIRST + 20
+
+FUNCTION TreeView_EnsureVisible (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) _
+    AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_ENSUREVISIBLE, 0, hitem)
+END FUNCTION
+
+TYPE TVSORTCB
+    hParent     AS DWORD  ' HTREEITEM
+    lpfnCompare AS DWORD  ' PBNTVCOMPARE
+    lParam      AS LONG   ' LPARAM
+END TYPE
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_SORTCB
+    TVSORTCB
+END TYPE
+#ELSE
+TYPE TVSORTCB
+    TV_SORTCB
+END TYPE
+#ENDIF
+
+%TVM_SORTCHILDRENCB     = %TV_FIRST + 21
+
+FUNCTION TreeView_SortChildrenCB (BYVAL hwnd AS DWORD, psort AS TV_SORTCB, _
+    recurse AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SORTCHILDRENCB, recurse, VARPTR(psort))
+END FUNCTION
+
+%TVM_ENDEDITLABELNOW    = %TV_FIRST + 22
+
+FUNCTION TreeView_EndEditLabelNow (BYVAL hwnd AS DWORD, _
+    BYVAL fCancel AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_ENDEDITLABELNOW, fCancel, 0)
+END FUNCTION
+
+%TVM_GETISEARCHSTRINGA  = %TV_FIRST + 23
+%TVM_GETISEARCHSTRINGW  = %TV_FIRST + 64
+
+#IF %DEF(%UNICODE)
+%TVM_GETISEARCHSTRING = %TVM_GETISEARCHSTRINGW
+#ELSE
+%TVM_GETISEARCHSTRING = %TVM_GETISEARCHSTRINGA
+#ENDIF
+
+FUNCTION TreeView_GetISearchStringA (BYVAL hwndTV AS DWORD, lpsz AS ASCIIZ) AS LONG
+    FUNCTION = SendMessage(hwndTV, %TVM_GETISEARCHSTRINGA, 0, VARPTR(lpsz))
+END FUNCTION
+
+FUNCTION TreeView_GetISearchStringW (BYVAL hwndTV AS DWORD, lpsz AS WSTRINGZ) AS LONG
+    FUNCTION = SendMessage(hwndTV, %TVM_GETISEARCHSTRINGW, 0, VARPTR(lpsz))
+END FUNCTION
+
+#IF %DEF(%UNICODE)
+FUNCTION TreeView_GetISearchString (BYVAL hwndTV AS DWORD, lpsz AS WSTRINGZ) AS LONG
+    FUNCTION = SendMessage(hwndTV, %TVM_GETISEARCHSTRINGW, 0, VARPTR(lpsz))
+END FUNCTION
+#ELSE
+FUNCTION TreeView_GetISearchString (BYVAL hwndTV AS DWORD, lpsz AS ASCIIZ) AS LONG
+    FUNCTION = SendMessage(hwndTV, %TVM_GETISEARCHSTRINGA, 0, VARPTR(lpsz))
+END FUNCTION
+#ENDIF
+
+#IF (%WIN32_IE >= &H0300)
+%TVM_SETTOOLTIPS        = %TV_FIRST + 24
+
+FUNCTION TreeView_SetToolTips (BYVAL hwnd AS DWORD, BYVAL hwndTT AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETTOOLTIPS, hwndTT, 0)
+END FUNCTION
+
+%TVM_GETTOOLTIPS        = %TV_FIRST + 25
+
+FUNCTION TreeView_GetToolTips (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETTOOLTIPS, 0, 0)
+END FUNCTION
+
+#ENDIF  ' #IF (%WIN32_IE >= &H0300)
+
+
+#IF (%WIN32_IE >= &H0400)
+%TVM_SETINSERTMARK      = %TV_FIRST + 26
+
+FUNCTION TreeView_SetInsertMark (BYVAL hwnd AS DWORD, BYVAL hItem AS DWORD, _
+    BYVAL fAfter AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETINSERTMARK, fAfter, hItem)
+END FUNCTION
+
+%TVM_SETUNICODEFORMAT   = %CCM_SETUNICODEFORMAT
+
+FUNCTION TreeView_SetUnicodeFormat (BYVAL hwnd AS DWORD, _
+    BYVAL fUnicode AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETUNICODEFORMAT, fUnicode, 0)
+END FUNCTION
+
+%TVM_GETUNICODEFORMAT   = %CCM_GETUNICODEFORMAT
+
+FUNCTION TreeView_GetUnicodeFormat (BYVAL hwnd AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_GETUNICODEFORMAT, 0, 0)
+END FUNCTION
+
+%TVM_SETITEMHEIGHT      = %TV_FIRST + 27
+
+FUNCTION TreeView_SetItemHeight (BYVAL hwnd AS DWORD, iHeight AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETITEMHEIGHT, iHeight, 0)
+END FUNCTION
+
+%TVM_GETITEMHEIGHT      = %TV_FIRST + 28
+
+FUNCTION TreeView_GetItemHeight (BYVAL hwnd AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_GETITEMHEIGHT, 0, 0)
+END FUNCTION
+
+%TVM_SETBKCOLOR         = %TV_FIRST + 29
+
+FUNCTION TreeView_SetBkColor (BYVAL hwnd AS DWORD, BYVAL clr AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETBKCOLOR, 0, clr)
+END FUNCTION
+
+%TVM_SETTEXTCOLOR       = %TV_FIRST + 30
+
+FUNCTION TreeView_SetTextColor (BYVAL hwnd AS DWORD, BYVAL clr AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETTEXTCOLOR, 0, clr)
+END FUNCTION
+
+%TVM_GETBKCOLOR         = %TV_FIRST + 31
+
+FUNCTION TreeView_GetBkColor (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETBKCOLOR, 0, 0)
+END FUNCTION
+
+%TVM_GETTEXTCOLOR       = %TV_FIRST + 32
+
+FUNCTION TreeView_GetTextColor (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETTEXTCOLOR, 0, 0)
+END FUNCTION
+
+%TVM_SETSCROLLTIME      = %TV_FIRST + 33
+
+FUNCTION TreeView_SetScrollTime (BYVAL hwnd AS DWORD, BYVAL uTime AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETSCROLLTIME, uTime, 0)
+END FUNCTION
+
+%TVM_GETSCROLLTIME      = %TV_FIRST + 34
+
+FUNCTION TreeView_GetScrollTime (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETSCROLLTIME, 0, 0)
+END FUNCTION
+
+%TVM_SETINSERTMARKCOLOR = %TV_FIRST + 37
+
+FUNCTION TreeView_SetInsertMarkColor (BYVAL hwnd AS DWORD, _
+    BYVAL clr AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETINSERTMARKCOLOR, 0, clr)
+END FUNCTION
+
+%TVM_GETINSERTMARKCOLOR = %TV_FIRST + 38
+
+FUNCTION TreeView_GetInsertMarkColor (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETINSERTMARKCOLOR, 0, 0)
+END FUNCTION
+
+#ENDIF  ' #IF (%WIN32_IE >= &H0400)
+
+#IF (%WIN32_IE >= &H0500)
+' tvm_?etitemstate only uses mask, state and stateMask.
+' so unicode or ansi is irrelevant.
+FUNCTION TreeView_SetItemState (BYVAL hwndTV AS DWORD, BYVAL hti AS DWORD, _
+    BYVAL nSTATE AS DWORD, BYVAL nstatemask AS DWORD) AS DWORD
+    LOCAL ms_TVi AS TVITEM
+    ms_TVi.mask  = %TVIF_STATE
+    ms_TVi.hItem = hti
+    ms_TVi.stateMask = nstatemask
+    ms_TVi.state = nSTATE
+    SendMessage hwndTV, %TVM_SETITEM, 0, VARPTR(ms_TVi)
+    ' the return value is not used
+END FUNCTION
+
+#IF NOT %DEF(%ITSIM)
+    %ITSIM = 1
+    MACRO IndexToStateImageMask(i)=((i)*4096)
+#ENDIF
+
+FUNCTION TreeView_SetCheckState (BYVAL hwndTV AS DWORD, BYVAL hti AS DWORD, _
+    BYVAL fCheck AS LONG) AS DWORD
+    FUNCTION = TreeView_SetItemState(hwndTV, hti, _
+        IndexToStateImageMask(IIF&(fCheck, 2, 1)), %TVIS_STATEIMAGEMASK)
+END FUNCTION
+
+%TVM_GETITEMSTATE = %TV_FIRST + 39
+
+FUNCTION TreeView_GetItemState (BYVAL hwndTV AS DWORD, BYVAL hti AS DWORD, _
+    BYVAL mask AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwndTV, %TVM_GETITEMSTATE, hti, mask)
+END FUNCTION
+
+' [Despite this returning a DWORD, Microsoft documents one of the return
+'  values as being -1. What they mean is &HFFFFFFFF???, not &HFFFFFFFF&.]
+FUNCTION TreeView_GetCheckState (BYVAL hwndTV AS DWORD, BYVAL hti AS DWORD) _
+    AS DWORD
+    LOCAL dTmp AS LONG
+    dTmp = %TVIS_STATEIMAGEMASK
+    SHIFT RIGHT dTmp, 12
+    DECR dTmp
+    FUNCTION = SendMessage(hwndTV, %TVM_GETITEMSTATE, hti, dTmp)
+END FUNCTION
+
+%TVM_SETLINECOLOR = %TV_FIRST + 40
+
+FUNCTION TreeView_SetLineColor (BYVAL hwnd AS DWORD, BYVAL clr AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SETLINECOLOR, 0, clr)
+END FUNCTION
+
+%TVM_GETLINECOLOR = %TV_FIRST + 41
+
+FUNCTION TreeView_GetLineColor (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETLINECOLOR, 0, 0)
+END FUNCTION
+
+#ENDIF  ' #IF (%WIN32_IE >= &H0500)
+
+#IF (%WIN32_WINNT >= &H0501)
+%TVM_MAPACCIDTOHTREEITEM   = (%TV_FIRST + 42)
+FUNCTION TreeView_MapAccIDToHTREEITEM (BYVAL hwnd AS DWORD, BYVAL nid AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_MAPACCIDTOHTREEITEM, nid, 0)
+END FUNCTION
+
+%TVM_MAPHTREEITEMTOACCID   = (%TV_FIRST + 43)
+FUNCTION TreeView_MapHTREEITEMToAccID (BYVAL hwnd AS DWORD, _
+    BYVAL htreeitem AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_MAPHTREEITEMTOACCID, htreeitem, 0)
+END FUNCTION
+
+%TVM_SETEXTENDEDSTYLE    = (%TV_FIRST + 44)
+FUNCTION TreeView_SetExtendedStyle (BYVAL hwnd AS DWORD, BYVAL dwd AS DWORD, _
+    BYVAL mask AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETEXTENDEDSTYLE, mask, dwd)
+END FUNCTION
+
+%TVM_GETEXTENDEDSTYLE    = (%TV_FIRST + 45)
+FUNCTION TreeView_GetExtendedStyle (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETEXTENDEDSTYLE, 0, 0)
+END FUNCTION
+
+
+%TVM_SETAUTOSCROLLINFO  = (%TV_FIRST + 59)
+FUNCTION TreeView_SetAutoScrollInfo (BYVAL hwnd AS DWORD, _
+    BYVAL uPixPerSec AS DWORD, BYVAL uUpdateTime AS DWORD) AS LONG
+    FUNCTION = SendMessage(hwnd, %TVM_SETAUTOSCROLLINFO, uPixPerSec, uUpdateTime)
+END FUNCTION
+#ENDIF  ' #IF (%WIN32_WINNT >= &H0501)
+
+
+#IF (%WIN32_WINNT >= &H0600)
+%TVM_GETSELECTEDCOUNT     = (%TV_FIRST + 70)
+FUNCTION TreeView_GetSelectedCount (BYVAL hwnd AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_GETSELECTEDCOUNT, 0, 0)
+END FUNCTION
+
+%TVM_SHOWINFOTIP          = (%TV_FIRST + 71)
+FUNCTION TreeView_ShowInfoTip (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD) AS DWORD
+    FUNCTION = SendMessage(hwnd, %TVM_SHOWINFOTIP, 0, hitem)
+END FUNCTION
+
+MACRO TVITEMPART_enum=LONG
+ENUM TVITEMPART SINGULAR
+    TVGIPR_BUTTON  = &H0001
+END ENUM
+
+TYPE TVGETITEMPARTRECTINFO
+    hti    AS DWORD  ' HTREEITEM
+    prc    AS RECT PTR
+    partID AS TVITEMPART_enum
+END TYPE
+
+%TVM_GETITEMPARTRECT       = (%TV_FIRST + 72)
+FUNCTION TreeView_GetItemPartRect (BYVAL hwnd AS DWORD, BYVAL hitem AS DWORD, _
+    prc AS RECT, BYVAL partid AS TVITEMPART_enum) AS LONG
+    LOCAL info AS TVGETITEMPARTRECTINFO
+    info.hti    = hitem
+    info.prc    = VARPTR(prc)
+    info.partID = partid
+    FUNCTION = SendMessage(hwnd, %TVM_GETITEMPARTRECT, 0, VARPTR(info))
+END FUNCTION
+
+#ENDIF  ' #IF (%WIN32_WINNT >= &H0600)
+
+DECLARE FUNCTION PFNTVCOMPARE(BYVAL lParam1 AS LONG, BYVAL lparam2 AS LONG, _
+    BYVAL lParamSort AS LONG) AS LONG
+
+TYPE NMTREEVIEWA
+    hdr     AS NMHDR
+    action  AS DWORD
+    itemOld AS TVITEMA
+    itemNew AS TVITEMA
+    ptDrag  AS POINT
+END TYPE
+
+TYPE NMTREEVIEWW
+    hdr     AS NMHDR
+    action  AS DWORD
+    itemOld AS TVITEMW
+    itemNew AS TVITEMW
+    ptDrag  AS POINT
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE NMTREEVIEW
+    NMTREEVIEWW
+END TYPE
+#ELSE
+TYPE NMTREEVIEW
+    NMTREEVIEWW
+END TYPE
+#ENDIF
+
+#IF (%WIN32_IE >= &H0300)
+TYPE NM_TREEVIEWW
+    NMTREEVIEWW
+END TYPE
+TYPE NM_TREEVIEWA
+    NMTREEVIEWA
+END TYPE
+#ELSE
+TYPE NMTREEVIEWW
+    NM_TREEVIEWW
+END TYPE
+TYPE NMTREEVIEWA
+    NM_TREEVIEWA
+END TYPE
+#ENDIF
+
+TYPE NM_TREEVIEW
+    NMTREEVIEW
+END TYPE
+
+%TVN_SELCHANGINGA       = %TVN_FIRST - 1
+%TVN_SELCHANGINGW       = %TVN_FIRST - 50
+%TVN_SELCHANGEDA        = %TVN_FIRST - 2
+%TVN_SELCHANGEDW        = %TVN_FIRST - 51
+
+%TVC_UNKNOWN            = &H0000
+%TVC_BYMOUSE            = &H0001
+%TVC_BYKEYBOARD         = &H0002
+
+%TVN_GETDISPINFOA       = %TVN_FIRST - 3
+%TVN_GETDISPINFOW       = %TVN_FIRST - 52
+%TVN_SETDISPINFOA       = %TVN_FIRST - 4
+%TVN_SETDISPINFOW       = %TVN_FIRST - 53
+
+%TVIF_DI_SETITEM        = &H1000
+
+TYPE NMTVDISPINFOA
+    hdr  AS NMHDR
+    ITEM AS TVITEMA
+END TYPE
+
+TYPE NMTVDISPINFOW
+    hdr  AS NMHDR
+    ITEM AS TVITEMW
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE NMTVDISPINFO
+    NMTVDISPINFOW
+END TYPE
+#ELSE
+TYPE NMTVDISPINFO
+    NMTVDISPINFOA
+END TYPE
+#ENDIF
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_DISPINFOA
+    NMTVDISPINFOA
+END TYPE
+TYPE TV_DISPINFOW
+    NMTVDISPINFOW
+END TYPE
+#ELSE
+TYPE NMTVDISPINFOA
+    TV_DISPINFOA
+END TYPE
+TYPE NMTVDISPINFOW
+    TV_DISPINFOW
+END TYPE
+#ENDIF
+
+TYPE TV_DISPINFO
+    NMTVDISPINFO
+END TYPE
+
+#IF (%WIN32_IE >= &H0600)
+
+TYPE NMTVDISPINFOEXA
+    hdr  AS NMHDR
+    ITEM AS TVITEMEXA
+END TYPE
+
+TYPE NMTVDISPINFOEXW
+    hdr  AS NMHDR
+    ITEM AS TVITEMEXW
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE NMTVDISPINFOEX
+    NMTVDISPINFOEXW
+END TYPE
+#ELSE
+TYPE NMTVDISPINFOEX
+    NMTVDISPINFOEXA
+END TYPE
+#ENDIF
+
+TYPE TV_DISPINFOEXA
+    NMTVDISPINFOEXA
+END TYPE
+TYPE TV_DISPINFOEXW
+    NMTVDISPINFOEXW
+END TYPE
+TYPE TV_DISPINFOEX
+    NMTVDISPINFOEX
+END TYPE
+
+#ENDIF  ' #IF (%WIN32_IE >= &H0600)
+
+%TVN_ITEMEXPANDINGA     = %TVN_FIRST - 5
+%TVN_ITEMEXPANDINGW     = %TVN_FIRST - 54
+%TVN_ITEMEXPANDEDA      = %TVN_FIRST - 6
+%TVN_ITEMEXPANDEDW      = %TVN_FIRST - 55
+%TVN_BEGINDRAGA         = %TVN_FIRST - 7
+%TVN_BEGINDRAGW         = %TVN_FIRST - 56
+%TVN_BEGINRDRAGA        = %TVN_FIRST - 8
+%TVN_BEGINRDRAGW        = %TVN_FIRST - 57
+%TVN_DELETEITEMA        = %TVN_FIRST - 9
+%TVN_DELETEITEMW        = %TVN_FIRST - 58
+%TVN_BEGINLABELEDITA    = %TVN_FIRST - 10
+%TVN_BEGINLABELEDITW    = %TVN_FIRST - 59
+%TVN_ENDLABELEDITA      = %TVN_FIRST - 11
+%TVN_ENDLABELEDITW      = %TVN_FIRST - 60
+%TVN_KEYDOWN            = %TVN_FIRST - 12
+%TVN_CHECKBOX           = %TVN_FIRST - 61 ' New for RFO-BASIC! Quick APK
+%TVN_SELCHANGEDMOUSE    = %TVN_FIRST - 62 ' New for RFO-BASIC! Quick APK
+
+#IF (%WIN32_IE >= &H0400)
+%TVN_GETINFOTIPA        = %TVN_FIRST - 13
+%TVN_GETINFOTIPW        = %TVN_FIRST - 14
+%TVN_SINGLEEXPAND       = %TVN_FIRST - 15
+
+%TVNRET_DEFAULT = 0
+%TVNRET_SKIPOLD = 1
+%TVNRET_SKIPNEW = 2
+#ENDIF  ' #IF (%WIN32_IE >= &H0400)
+
+#IF (%WIN32_IE >= &H0600)
+%TVN_ITEMCHANGINGA      = (%TVN_FIRST-16)
+%TVN_ITEMCHANGINGW      = (%TVN_FIRST-17)
+%TVN_ITEMCHANGEDA       = (%TVN_FIRST-18)
+%TVN_ITEMCHANGEDW       = (%TVN_FIRST-19)
+%TVN_ASYNCDRAW          = (%TVN_FIRST-20)
+#ENDIF
+
+TYPE NMTVKEYDOWN BYTE
+    hdr   AS NMHDR
+    wVKey AS WORD
+    flags AS DWORD
+END TYPE
+
+#IF (%WIN32_IE >= &H0300)
+TYPE TV_KEYDOWN
+    NMTVKEYDOWN
+END TYPE
+#ELSE
+TYPE NMTVKEYDOWN
+    TV_KEYDOWN
+END TYPE
+#ENDIF
+
+#IF %DEF(%UNICODE)
+%TVN_SELCHANGING       = %TVN_SELCHANGINGW
+%TVN_SELCHANGED        = %TVN_SELCHANGEDW
+%TVN_GETDISPINFO       = %TVN_GETDISPINFOW
+%TVN_SETDISPINFO       = %TVN_SETDISPINFOW
+%TVN_ITEMEXPANDING     = %TVN_ITEMEXPANDINGW
+%TVN_ITEMEXPANDED      = %TVN_ITEMEXPANDEDW
+%TVN_BEGINDRAG         = %TVN_BEGINDRAGW
+%TVN_BEGINRDRAG        = %TVN_BEGINRDRAGW
+%TVN_DELETEITEM        = %TVN_DELETEITEMW
+%TVN_BEGINLABELEDIT    = %TVN_BEGINLABELEDITW
+%TVN_ENDLABELEDIT      = %TVN_ENDLABELEDITW
+#ELSE
+%TVN_SELCHANGING       = %TVN_SELCHANGINGA
+%TVN_SELCHANGED        = %TVN_SELCHANGEDA
+%TVN_GETDISPINFO       = %TVN_GETDISPINFOA
+%TVN_SETDISPINFO       = %TVN_SETDISPINFOA
+%TVN_ITEMEXPANDING     = %TVN_ITEMEXPANDINGA
+%TVN_ITEMEXPANDED      = %TVN_ITEMEXPANDEDA
+%TVN_BEGINDRAG         = %TVN_BEGINDRAGA
+%TVN_BEGINRDRAG        = %TVN_BEGINRDRAGA
+%TVN_DELETEITEM        = %TVN_DELETEITEMA
+%TVN_BEGINLABELEDIT    = %TVN_BEGINLABELEDITA
+%TVN_ENDLABELEDIT      = %TVN_ENDLABELEDITA
+#ENDIF
+
+#IF (%WIN32_IE >= &H0300)
+%NMTVCUSTOMDRAW_V3_SIZE = 48 + 2 * 4 ' CCSIZEOF_STRUCT(NMTVCUSTOMDRAW, clrTextBk)
+
+TYPE NMCUSTOMDRAW
+    hdr         AS NMHDR
+    dwDrawStage AS DWORD
+    hdc         AS DWORD
+    rc          AS RECT
+    dwItemSpec  AS DWORD  ' this is control specific, but it's how to specify an item. valid only with CDDS_ITEM bit set
+    uItemState  AS DWORD
+    lItemlParam AS LONG
+END TYPE
+
+TYPE NMTVCUSTOMDRAW
+    nmcd      AS NMCUSTOMDRAW
+    clrText   AS COLORREF
+    clrTextBk AS COLORREF
+#IF (%WIN32_IE >= &H0400)
+    iLevel    AS LONG
+#ENDIF
+END TYPE
+#ENDIF  ' #IF (%WIN32_IE >= &H0300)
+
+#IF (%WIN32_IE >= &H0400)
+
+' for tooltips
+
+TYPE NMTVGETINFOTIPA
+    hdr        AS NMHDR
+    pszText    AS ASCIIZ PTR
+    cchTextMax AS LONG
+    hItem      AS DWORD   ' HTREEITEM
+    lParam     AS LONG    ' LPARAM
+END TYPE
+
+TYPE NMTVGETINFOTIPW
+    hdr        AS NMHDR
+    pszText    AS WSTRINGZ PTR
+    cchTextMax AS LONG
+    hItem      AS DWORD   ' HTREEITEM
+    lParam     AS LONG    ' LPARAM
+END TYPE
+
+#IF %DEF(%UNICODE)
+%TVN_GETINFOTIP = %TVN_GETINFOTIPW
+TYPE NMTVGETINFOTIP
+    NMTVGETINFOTIPW
+END TYPE
+#ELSE
+%TVN_GETINFOTIP = %TVN_GETINFOTIPA
+TYPE NMTVGETINFOTIP
+    NMTVGETINFOTIPA
+END TYPE
+#ENDIF
+
+' treeview's customdraw return meaning don't draw images.
+' valid on CDRF_NOTIFYITEMPREPAINT
+%TVCDRF_NOIMAGES        = &H00010000
+
+#ENDIF      ' %WIN32_IE >= &H0400
+
+#IF (%WIN32_IE > &H0600)
+
+TYPE NMTVITEMCHANGE
+    hdr       AS NMHDR
+    uChanged  AS DWORD
+    hItem     AS DWORD   ' HTREEITEM
+    uStateNew AS DWORD
+    uStateOld AS DWORD
+    lParam    AS LONG    ' LPARAM
+END TYPE
+
+TYPE IMAGELISTDRAWPARAMS
+    cbSize   AS DWORD
+    himl     AS DWORD
+    i        AS LONG
+    hdcDst   AS DWORD
+    x        AS LONG
+    y        AS LONG
+    cx       AS LONG
+    cy       AS LONG
+    xBitmap  AS LONG      ' x offest from the upperleft of bitmap
+    yBitmap  AS LONG      ' y offest from the upperleft of bitmap
+    rgbBk    AS COLORREF
+    rgbFg    AS COLORREF
+    fStyle   AS DWORD
+    dwRop    AS DWORD
+#IF (%WIN32_IE >= &H0501)
+    fState   AS DWORD
+    FRAME    AS DWORD
+    crEffect AS COLORREF
+#ENDIF  ' #IF (%WIN32_IE >= &H0501)
+END TYPE
+
+TYPE NMTVASYNCDRAW
+    hdr       AS NMHDR
+    pimldp    AS IMAGELISTDRAWPARAMS PTR  ' the draw that failed
+    hr        AS LONG     ' HRESULT         why it failed
+    hItem     AS DWORD    ' HTREEITEM       item that failed to draw icon
+    lParam    AS LONG                     ' its data
+    ' Out Params
+    dwRetFlags AS DWORD           ' What listview should do on return
+    iRetImageIndex AS LONG        ' used if ADRF_DRAWIMAGE is returned
+END TYPE
+
+#IF %DEF(%UNICODE)
+%TVN_ITEMCHANGING     = %TVN_ITEMCHANGINGW
+%TVN_ITEMCHANGED      = %TVN_ITEMCHANGEDW
+#ELSE
+%TVN_ITEMCHANGING     = %TVN_ITEMCHANGINGA
+%TVN_ITEMCHANGED      = %TVN_ITEMCHANGEDA
+#ENDIF
+
+#ENDIF      ' %WIN32_IE >= &H0600
+
+
+MACRO CB_TREEVIEW_HANDLEMSG(ctl, msg)
+' Returns the treeview ID and messages into variables ctl and msg
+' Main messages can be %TVN_SELCHANGEDW, %TVN_ITEMEXPANDEDW, %TVN_CHECKBOX
+' The call of this macro needs to be placed in your callback right here:
+'   SELECT CASE AS LONG CB.MSG
+'       CASE %WM_NOTIFY ' Specific messages from TREEVIEW control
+'           LOCAL ctl, msg AS LONG
+'           CB_TREEVIEW_HANDLEMSG(ctl, msg)
+
+    LOCAL pNMHDR AS NMHDR PTR
+    pNMHDR = CB.NMHDR
+    ctl = @pNMHDR.idfrom
+    msg = @pNMHDR.code
+
+    IF msg = %NM_CLICK THEN
+        LOCAL TVht  AS TV_HITTESTINFO
+        LOCAL dwPos, hTreeView AS DWORD
+        ' Specific code to detect 2nd click on (already selected) treeview label
+        TREEVIEW SELECT CB.HNDL, ctl, 0  ' Unselect
+        ' Now, some specific code to detect a click on treeview check-box
+        dwPos = GetMessagePos          ' Get the mouse position
+        TVht.pt.x = LO(WORD, dwPos)    ' Store the mouse x pos in the hit-test info structure
+        TVht.pt.y = HI(WORD, dwPos)    ' Store the mouse y pos in the hit-test info structure
+        MapWindowPoints %HWND_DESKTOP, @pNMHDR.hwndFrom, BYVAL VARPTR(TVht.pt), 1
+        TreeView_HitTest @pNMHDR.hwndFrom, TVht
+        IF TVht.flags = %TVHT_ONITEMICON OR TVht.flags = %TVHT_ONITEMLABEL THEN
+            TREEVIEW SELECT CB.HNDL, ctl, TVht.hItem ' select current row
+            msg = %TVN_SELCHANGEDMOUSE
+        ELSEIF TVht.flags = %TVHT_ONITEMSTATEICON THEN
+            TREEVIEW SELECT CB.HNDL, ctl, TVht.hItem ' select current row
+            msg = %TVN_CHECKBOX
+        END IF
+
+    ELSEIF msg = %TVN_KEYDOWN THEN ' Same code for detecting switching a check-box from KEYBOARD
+        LOCAL KeyPress AS TV_KEYDOWN PTR
+        KeyPress = CB.LPARAM
+        IF @KeyPress.wVKey = %VK_SPACE THEN msg = %TVN_CHECKBOX
+
+    END IF
+END MACRO
+
+
+SUB TREEVIEW_RECURSIVE_CHECK(hDlg AS DWORD, CTL AS DWORD, ref AS LONG, checked AS LONG)
+' Checks (checked = -1) or unchecks (checked = 0) the checkbox of element ref
+' and of all of its children and grand-children...
+    LOCAL i, lRes AS LONG
+    TREEVIEW GET CHILD hDlg, CTL, ref TO lRes
+    IF lRes = 0 THEN EXIT SUB
+    DO
+        TREEVIEW SET CHECK hDlg, CTL, lRes, checked
+        TREEVIEW GET USER hDlg, CTL, lRes TO i
+        res4app(i) = checked
+        TREEVIEW_RECURSIVE_CHECK(hDlg, CTL, lRes, checked)
+        TREEVIEW GET NEXT hDlg, CTL, lRes TO lRes
+        IF lRes = 0 THEN EXIT LOOP
+    LOOP
+END SUB
+
+#ENDIF  ' NOTREEVIEW

@@ -1,0 +1,233 @@
+screen=<?xml version="1.0" encoding="utf-8"?>
+
+<language code="RO" name="Romanian">
+
+  <buttons>
+    <button id="cancel">&Renunta</button>
+    <button id="retry">R&eincearca</button>
+    <button id="continue">C&ontinua</button>
+    <button id="yes">&Da</button>
+    <button id="no">&Nu</button>
+    <button id="abort">&Abandon</button>
+    <button id="ignore">&Ignora</button>
+    <button id="ok">O&K</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">E disponibila o actualizare a programului.</label>
+    <label id="2">Corecteaza cateva bug-uri si/sau aduce noi functionalitati.
+Instalarea e obligatorie.
+
+Porniti instalarea acum?</label>
+    <label id="3">Corecteaza bug-uri minore si/sau erori de traducere.
+
+Doriti sa-l instalati?</label>
+    <label id="4">Actualizare...</label>
+    <label id="5">Eroare la descarcarea componentelor!</label>
+    <label id="6">s-a actualizat!</label>
+    <label id="7">Versiune noua:</label>
+    <label id="8">a fost offline pentru (n) zile</label>
+    <label id="9">Trebuie sa fie conectat pentru a verifica posibilele actualizari de securitate obligatorii.</label>
+    <label id="10">Data viitoare cand lansati programul incercati sa o faceti conectat la internet.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Bine ati venit la</label>
+    <label id="2">Sunteti prima data aici; va rog sa alegeti un folder implicit unde se vor crea fisierele APK:</label>
+    <label id="3">Selectati</label>
+    <label id="4">niciun folder selectat</label>
+    <label id="6">Urmator</label>
+    <label id="11">Folder implicit Quick APK</label>
+    <label id="12">alege acest folder</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">Proiect nou</label>
+    <label id="2">gol</label>
+    <label id="6">Folder implicit:</label>
+    <label id="7">Schimba</label>
+    <label id="8">Despre</label>
+    <label id="9">Folder implicit Quick APK</label>
+    <label id="10">alegeti acest folder</label>
+    <label id="11">compileaza</label>
+    <label id="12">modifica</label>
+    <label id="13">instaleaza</label>
+    <label id="14">sterge acest proiect ?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Program local si resurse</label>
+    <label id="2">Daca doriti sa compilati un program local BASIC! si resursele in APK, doar copiati in folderul implicit fisierele necesare in EXACT ACELEASI foldere si subfoldere ca pe dispozitivul Android: fisierul principal .bas in "[b]XXX\rfo-basic\source\[/b]" si resursele in "[b]XXX\rfo-basic\data\[/b]" sau oricare alt folder in care le-ati pus.
+
+Sunt cateva cazuri cand vreti sa creati APK din program si resurse BASIC! care *nu* sunt pe dispozitivul Android:
+- puteti sa tastati si sa dezvoltati direct pe calculatorul dvs. si sa testati prin RFO-BASIC! Launcher
+- sau RFO-BASIC! Quick APK ar putea avea probleme de comunicare cu dispozitivul Android prin WiFi sau USB</label>
+    <label id="3">Memento: folderul implicit este urmatorul:</label>
+    <label id="5">Inapoi</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">Conexiune WiFi</label>
+    <label id="2">Trebuie sa aveti aplicatia QuickAPK WiFi instalata si lansata pe dispozitivul Android (in prim plan sau in fundal) cu WiFi activat.
+
+De asemenea, trebuie ca telefonul sau tableta Android si calculatorul sa fie in aceeasi retea (de obicei ruterul din casa) pentru ca acestia sa se detecteze unul pe altul.</label>
+    <label id="3">Puteti descarca aplicatia QuickAPK WiFi pentru Andoird de la:</label>
+    <label id="5">Inapoi</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">Conexiune prin cablu USB</label>
+    <label id="2">Trebuie sa aveti activat pe dispozitiv modul "USB debugging":
+Incepand cu versiunea Android 4.2 si mai noua, aceasta se poate face la Setari > Despre telefon si apasand de 7 ori pe linia "Build number" pentru activarea Optiuni Dezvoltator (in versiuni Android inainte de 4.2, meniul Dezvoltator este chiar in radacina ecranului Setari). Apoi mergeti la Optiuni Dezvoltator si activati Depanare Android/USB.
+
+De asemenea, aparatul trebuie sa fie recunoscut corespunzator de calculator, cu driverele producatorului instalate corect. De cele mai multe ori aceasta inseamna instalarea suitei PC de la producator (de ex. Samsung Kies, Sony PC Companion, etc.)</label>
+    <label id="3">Inapoi</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analiza sistem de fisiere local...</label>
+    <label id="2">Detectare dispozitive conectate...</label>
+    <label id="3">Niciun dispozitiv conectat detectat. Apasati unul din butoanele de mai jos</label>
+    <label id="4">RFO-BASIC! nu a fost gasit pe dispozitiv. Instalati-l si incercati din nou.</label>
+    <label id="5">Anterior</label>
+    <label id="6">Reincearca</label>
+    <label id="7">Urmator</label>
+    <label id="8">Gasit un</label>
+    <label id="9">Analiza sistem de fisiere al dispozitivului...</label>
+    <label id="10">Access local resources on PC</label>
+    <label id="11">Access device resources via WiFi</label>
+    <label id="12">Access device resources via USB</label>
+    <label id="13">read me</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Selectati programul principal si folderele/fisierele de resurse:</label>
+    <label id="3">Nu s-a gasit .bas in "XXX\rfo-basic\source\"</label>
+    <label id="4">folder(e)</label>
+    <label id="5">fisier(e)</label>
+    <label id="6">selectat</label>
+    <label id="7">Anterior</label>
+    <label id="8">Reimprospateaza</label>
+    <label id="9">Urmator</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Detectare dispozitive conectate...</label>
+    <label id="2">Copiere fisiere de pe</label>
+    <label id="12">pe calculator...</label>
+    <label id="3">Eroare: dispozitivul a fost deconectat!</label>
+    <label id="4">Anterior</label>
+    <label id="5">Reincearca</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Detaliile aplicatiei</label>
+    <label id="2">Nume</label>
+    <label id="4">Versiune</label>
+    <label id="6">Icon (clic pe butonul de schimbare sau trageti in aceasta fereastra)</label>
+    <label id="7">Schimba icon</label>
+    <label id="8">Implicit</label>
+    <label id="9">Afiseaza setari avansate in urmatorul ecran</label>
+    <label id="10">Anterior</label>
+    <label id="11">Urmator</label>
+    <label id="12">Folositi o imagine patrata</label>
+    <label id="13">Puneti doar o imagine</label>
+    <label id="14">Format de imagine invalid</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">setari avansate</label>
+    <label id="2">Folder aplicatie</label>
+    <label id="4">Nume pachet</label>
+    <label id="6">Cod versiune</label>
+    <label id="8">Titlu consola</label>
+    <label id="10">Prompter introducere</label>
+    <label id="12">Certificat</label>
+    <label id="13">Encrypt .bas files</label>
+    <label id="14">Activeaza accelerarea hardware</label>
+    <label id="16">Creeaza</label>
+    <label id="29">la instalare</label>
+    <label id="18">Lansare automata la pornirea dispozitivului</label>
+    <label id="19">Ecran de intampinare / Incarcare</label>
+    <label id="20">Permisii</label>
+    <label id="21">Aspect consola</label>
+    <label id="22">Copie resurse pe SD</label>
+    <label id="23">Anterior</label>
+    <label id="24">Urmator</label>
+    <label id="25">Utilizeaza implicit</label>
+    <label id="26">Utilizeaza altul</label>
+    <label id="27">Creeaza unul nou</label>
+    <label id="30">Refa consola la aspectul implicit</label>
+    <label id="31">Dimensiune scris</label>
+    <label id="32">Mic</label>
+    <label id="33">Mediu</label>
+    <label id="34">Mare</label>
+    <label id="35">Tip scris</label>
+    <label id="36">Orientare ecran</label>
+    <label id="37">Variabil in functie de senzori</label>
+    <label id="38">Peisaj fix</label>
+    <label id="39">Peisaj fix intors</label>
+    <label id="40">Portret fix</label>
+    <label id="41">Portret fix intors</label>
+    <label id="42">Foloseste consola liniata</label>
+    <label id="43">Culori:</label>
+    <label id="44">Scris</label>
+    <label id="45">Fundal</label>
+    <label id="46">Gol</label>
+    <label id="47">Renunta</label>
+    <label id="48">OK</label>
+    <label id="49">Autodetectare</label>
+    <label id="50">Selecteaza tot / nimic ...</label>
+    <label id="51">Pseudomin si/sau parola incorecte pentru acest certificat, incercati din nou:</label>
+    <label id="52">Va rog sa introduceti pseudonimul si parola pentru acest certificat:</label>
+    <label id="53">Pseudonim:</label>
+    <label id="54">Parola:</label>
+    <label id="55">Confirma:</label>
+    <label id="56">Trebuie sa introduceti pseudonim si parola nevide</label>
+    <label id="57">Parolele nu se potrivesc</label>
+    <label id="58">Parolele certificatului pot contine doar caracterele A..Z, a..z, 0..9 si _ $ #</label>
+    <label id="59">Un fisier cu acest nume exista deja. Se inlocuieste?</label>
+    <label id="60">Certificatul a fost creat cu scucces</label>
+    <label id="61">A fost o problema la crearea certificatului:</label>
+    <label id="62">Numele dvs. complet:</label>
+    <label id="63">Numele organizatiei dvs.:</label>
+    <label id="64">Activitatea organizatiei dvs.:</label>
+    <label id="65">Localitatea dvs.:</label>
+    <label id="66">Judetul/provincia dvs.:</label>
+    <label id="67">Codul de tara, pe 2 litere:</label>
+    <label id="68">Mesaj</label>
+    <label id="69">Indicator de incarcare</label>
+    <label id="70">Atentie: activarea accelerarii hardware va imbunatati redarea grafica cu un factor de 2 pana la 10, dar poate avea alte efecte: erori de anti-alias in degradeuri, nefunctionarea comenzii GR.SAVE etc.
+
+Daca nu sunteti sigur de consecinte, recomandam debifarea accelerarii hardware...</label>
+    <label id="71">Text de lansare</label>
+    <label id="72">Imagine de intampinare grafica</label>
+    <label id="73">Schimba imagine</label>
+    <label id="74">Culoare fundal</label>
+    <label id="75">Valori implicite</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">Creare APK...</label>
+    <label id="3">Anterior</label>
+    <label id="4">instaleaza pe dispozitivul Android via WiFi</label>
+    <label id="5">instaleaza pe dispozitivul Android via USB</label>
+    <label id="6">deschide folderul sau pe calculator</label>
+    <label id="7">converteste alt program in APK</label>
+    <label id="8">Paraseste</label>
+    <label id="10">Would you like Quick APK to move the local app resources in your home directory from "rfo-basic\data" to a dedicated folder "XXX" ?</label>
+    <label id="13">Scuze! Am intalnit o problema la crearea APK... Ce doriti sa faceti?</label>
+    <label id="14">Felicitari, fisierul dvs. APK a fost creat cu succes! Ce faceti in continuare?</label>
+    <label id="16">Instalare APK in curs...</label>
+    <label id="17">Aplicatie instalata. Se lanseaza pe dispozitiv?</label>
+    <label id="18">Instalarea nu a functionat:</label>
+    <label id="20">Vezi mesajul de eroare</label>
+    <label id="21">Deschide folderul easyapk pentru depanare</label>
+    <label id="22">Launch verbose build in command line</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Inapoi</label>
+  </screen>
+
+</language>

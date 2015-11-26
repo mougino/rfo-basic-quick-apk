@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<language code="DE" name="Deutsch">
+
+  <buttons>
+    <button id="cancel">&Abbrechen</button>
+    <button id="retry">&Wiederholen</button>
+    <button id="continue">&Fortsetzen</button>
+    <button id="yes">&Ja</button>
+    <button id="no">&Nein</button>
+    <button id="abort">A&bbruch</button>
+    <button id="ignore">&Ignorieren</button>
+    <button id="ok">&OK</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">Ein Programm-Update ist verfügbar.</label>
+    <label id="2">Es behebt kritische Fehler und/oder bringt neue Funktionalitäten.
+Die Installation ist obligatorisch.
+
+Wollen Sie mit der Installation jetzt fortfahren?</label>
+    <label id="3">Es behebt kleinere Fehler und / oder Übersetzungsfehler.
+
+Wollen Sie es installieren?</label>
+    <label id="4">Updating...</label>
+    <label id="5">Fehler beim Download der Komponenten!</label>
+    <label id="6">wurde aktualisiert!</label>
+    <label id="7">Neue Version:</label>
+    <label id="8">ist (n) Tage offline </label>
+    <label id="9">Um auf Sicherheits- Updates prüfen zu können, ist ein Verbindungsaufbau nötig</label>
+    <label id="10">Bitte starten Sie das nächste Mal das Programm bei bestehender Internetverbindung.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Herzlich Willkommen</label>
+    <label id="2">Dies ist der erste Start des Programms, bitte wählen Sie einen Zielordner, wohin Ihre APKs erstellt werden sollen:</label>
+    <label id="3">Auswählen</label>
+    <label id="4">Kein Ordner ausgewählt</label>
+    <label id="6">Weiter</label>
+    <label id="11">APKs Zielordner</label>
+    <label id="12">wählen diesen Ordner</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">Neues Projekt</label>
+    <label id="2">Leer</label>
+    <label id="6">Zielordner:</label>
+    <label id="7">Wechsel</label>
+    <label id="8">Info</label>
+    <label id="9">APKs Zielordner</label>
+    <label id="10">wählen diesen Ordner</label>
+    <label id="11">build</label>
+    <label id="12">modify</label>
+    <label id="13">install</label>
+    <label id="14">delete this project ?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Lokales Programm und Ressourcen</label>
+    <label id="2">Wenn Sie lokal ein BASIC!-Programm mit Ressourcen compilieren möchten, um eine APK zu erstellen, kopieren Sie einfach, die benötigten Dateien in Ihren Zielordner, in exakt die gleichen Ordner und Unterordner wie auf Ihrem Android-Gerät: 
+Ihre Hauptprogramm- .bas in "[b]XXX\rfo-basic\source\[/b]" und Ihre Ressourcen in "[b]XXX\rfo-basic\data\[/b]" oder was auch immer Sie in anderen Ordner platziert haben.
+
+Es gibt Situationen bei der APK-Erstellung, bei denen es nützlich ist, daß sich Programm und Ressourcen nicht auf Ihrem Android-Gerät befinden z.B.:   
+- Wenn Sie das Programm direkt an Ihrem Computer eingeben und entwickeln und mit dem Programm RFO-BASIC!-Launchner testen 
+- oder für den Fall, dass RFO-BASIC! Quick APK, Probleme bei der Kommunikation mit Ihrem Android-Gerät über WLAN- und USB-Kabel hat</label>
+    <label id="3">Zur Erinnerung: Sie haben folgende Zielverzeichnis für die APK ausgewählt:</label>
+    <label id="5">Zurück</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">WLAN Verbindung</label>
+    <label id="2">Sie müssen die Android-App "QuickAPK WiFi" auf Ihrem Gerät installiert und im Vorder- oder Hintergrund gestartet haben, damit WLAN aktiviert ist.
+
+Es ist weiterhin notwendig, dass Ihr Computer und Ihr Android-Handy oder Tablet sich in dem gleichen Netzwerk (z.B. Internet-Box im Haus) befinden, so dass sie sich automatisch erkennen.</label>
+    <label id="3">You can download the QuickAPK WiFi app for Android at:</label>
+    <label id="5">Zurück</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">USB-Kabelverbindung</label>
+    <label id="2">Bitte aktivieren Sie den "USB-Debugging"-Modus auf Ihrem Telefon:
+Sie finden die Einstellung bei Android 4.2 und neueren Versionen, indem Sie auf  Einstellungen > "Über das Telefon" oder "Info zu Gerät" tippen und dann 7 mal auf die "Build Nummer" klicken. Dann gehen Sie auf Entwickler-Optionen und aktivieren Android-Debugging.
+
+Außerdem muss das Gerät ordnungsgemäß mit Ihrem Computer verbunden sein, d.h. mit dem richtigen Herstellertreiber installiert werden. Um diesen zu Treiber nutzen, reicht es meistens die PC-Suite des Herstellers zu installieren. (z.B. Samsung Kies, Sony PC Companion, etc.)</label>
+    <label id="3">Zurück</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analyzing local file system...</label>
+    <label id="2">Suche angeschlossenes Gerät...</label>
+    <label id="3">Kein Gerät erkannt.. Bitte klicken Sie auf eine der folgenden Schaltflächen.</label>
+    <label id="4">RFO-BASIC! wurde auf Ihrem Gerät nicht gefunden. Installieren Sie es und versuchen Sie es erneut.</label>
+    <label id="5">Zurück</label>
+    <label id="6">Wiederholen</label>
+    <label id="7">Weiter</label>
+    <label id="8">Gefunden</label>
+    <label id="9">Analyse Gerätedateisystem ...</label>
+    <label id="10">Access local resources on PC</label>
+    <label id="11">Access device resources via WiFi</label>
+    <label id="12">Access device resources via USB</label>
+    <label id="13">read me</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Ordner und Dateien Ihres Hauptprogramms und Ihrer Ressourcen auswählen:</label>
+    <label id="3">No .bas found in "XXX\rfo-basic\source\"</label>
+    <label id="4">Ordner </label>
+    <label id="5">Datei(en)</label>
+    <label id="6">ausgewählt</label>
+    <label id="7">Zurück</label>
+    <label id="8">Refresh</label>
+    <label id="9">Weiter</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Suche angeschlossenes Gerät...</label>
+    <label id="2">Kopieren von Dateien von der</label>
+    <label id="12">zum Computer ... </label>
+    <label id="3">Fehler: Das Telefon wurde deaktiviert!</label>
+    <label id="4">Zurück</label>
+    <label id="5">Wiederholen</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Ihre App Details</label>
+    <label id="2">Name</label>
+    <label id="4">Version</label>
+    <label id="6">Icon (Klicken Sie auf die Schaltfläche oder ziehen sie es per Drag & Drop auf das Fenster)</label>
+    <label id="7">Icon ändern</label>
+    <label id="8">Standard</label>
+    <label id="9">Zeige erweiterte Einstellungen im nächsten Schritt.</label>
+    <label id="10">Zurück</label>
+    <label id="11">Weiter</label>
+    <label id="12">Ein quadratisches Bild benutzen.</label>
+    <label id="13">Bitte nur ein Bild benutzen</label>
+    <label id="14">kein gültiges Bildformat</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">erweiterte Einstellungen</label>
+    <label id="2">App Ordner</label>
+    <label id="4">Paketname</label>
+    <label id="6">Version Code</label>
+    <label id="8">Titel Konsole</label>
+    <label id="10">Eingabeaufforderung</label>
+    <label id="12">Zertifikat</label>
+    <label id="13">Encrypt .bas files</label>
+    <label id="14">Aktivieren Hardware-Beschleunigung</label>
+    <label id="16">erstellen</label>
+    <label id="29">bei der Installation</label>
+    <label id="18">Auto-Start der App beim Gerätestart</label>
+    <label id="19">Bild bei Programmstart</label>
+    <label id="20">Berechtigungen</label>
+    <label id="21">Konsole look and feel</label>
+    <label id="22">Kopieren Ressourcen auf SD</label>
+    <label id="23">Zurück</label>
+    <label id="24">Weiter</label>
+    <label id="25">Standard verwenden</label>
+    <label id="26">Verwenden Sie ein Anderes</label>
+    <label id="27">Erstellen Sie ein Neues</label>
+    <label id="30">Konsole auf Standardeinstellungen zurücksetzen look and feel</label>
+    <label id="31">Schriftgröße</label>
+    <label id="32">Klein</label>
+    <label id="33">Mittel</label>
+    <label id="34">Groß</label>
+    <label id="35">Schriftart</label>
+    <label id="36">Bildschirmausrichtung</label>
+    <label id="37">Variable durch Sensoren</label>
+    <label id="38">Fixiertes Querformat</label>
+    <label id="39">Entgegengesetzt fixiertes Querformat</label>
+    <label id="40">Fixiertes Hochformat</label>
+    <label id="41">Entgegengesetzt fixiertes Hochformat</label>
+    <label id="42">Benutze linierte Konsole</label>
+    <label id="43">Farbe:</label>
+    <label id="44">Schrift</label>
+    <label id="45">Hintergrund</label>
+    <label id="46">Leer</label>
+    <label id="47">Abbrechen</label>
+    <label id="48">OK</label>
+    <label id="49">Autoerkennung</label>
+    <label id="50">Alle / Keine auswählen ...</label>
+    <label id="51">Der Benutzername und/oder das Passwort sind unkorrekt für diesen keystore-Zertifikatzugang, versuch Sie es noch einmal:</label>
+    <label id="52">Bitte Benutzername und Passwort für diesen keystore-Zertifikatzugang:</label>
+    <label id="53">Benutzername:</label>
+    <label id="54">Passwort:</label>
+    <label id="55">Bestätigen:</label>
+    <label id="56">Sie müssen einen (nicht leeren) Benutzernamen und Passwort angeben</label>
+    <label id="57">Passworte stimmen nicht überein</label>
+    <label id="58">Certificate passwords can only contain characters A to Z, a to z, 0 to 9 and _ $ #</label>
+    <label id="59">Eine Datei mit diesem Namen exisistiert bereits. Ersetzen?</label>
+    <label id="60">Ihr Zertifikate wurde erfolgreich erstellt</label>
+    <label id="61">Es gab ein Problem beim Versuch, Ihr Zertifikat zu erstellen:</label>
+    <label id="62">Ihr voller Name:</label>
+    <label id="63">Ihr Organisations- Name:</label>
+    <label id="64">Ihre Organisations- Einheit:</label>
+    <label id="65">Ihre Stadt / ihr Ort:</label>
+    <label id="66">Ihr Land / ihre Region:</label>
+    <label id="67">Ihr 2-letter country code:</label>
+    <label id="68">Nachricht</label>
+    <label id="69">Lade-Anzeige</label>
+    <label id="70">Achtung: Das Aktivieren der Hardwarebeschleunigung wird die Grafik-Rendering Zeit um einen Faktor von 2 bis 10 verbessern, aber es kann einige Nebenwirkungen haben, wie: Anti-Alias-Störungen in Farbverläufen, der GR.SAVE Befehl funktioniert nicht, etc..
+
+Solange Sie unsicher über die Konsequenzen sind, vermeiden Sie die Hardwarebeschleunigung...</label>
+    <label id="71">Verlauf Text</label>
+    <label id="72">Graphischer Startbildschirm</label>
+    <label id="73">Ändern des Bildes</label>
+    <label id="74">Hintergrundfarbe</label>
+    <label id="75">Reset auf Standardeinstellungen</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">Erstellen APK ...</label>
+    <label id="3">Zurück</label>
+    <label id="4">Auf dem Android Gerät installieren via WiFi</label>
+    <label id="5">Auf dem Android Gerät installieren via USB</label>
+    <label id="6">Öffnen des Ordners auf Ihrem Computer</label>
+    <label id="7">Konvertieren eines anderen Programms zu einem APK</label>
+    <label id="8">Verlassen</label>
+    <label id="10">Would you like Quick APK to move the local app resources in your home directory from "rfo-basic\data" to a dedicated folder "XXX" ?</label>
+    <label id="13">Sorry! We encountered a problem while trying to build your APK... What do you want to do?</label>
+    <label id="14">Herzlichen Glückwunsch, APK wurde erfolgreich erstellt!! Was wollen Sie als nächstes tun?</label>
+    <label id="16">Installation of your APK in progress...</label>
+    <label id="17">Anwendung installiert. Starten auf dem Gerät?</label>
+    <label id="18">Installation hat nicht funktioniert:</label>
+    <label id="20">See the error message</label>
+    <label id="21">Open the easyapk folder for debug</label>
+    <label id="22">Launch verbose build in command line</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Zurück</label>
+  </screen>
+
+</language>

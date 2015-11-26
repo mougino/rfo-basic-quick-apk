@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<language code="PT" name="Português">
+
+  <buttons>
+    <button id="cancel">&Cancelar</button>
+    <button id="retry">Tenta&r de novo</button>
+    <button id="continue">C&ontinuar</button>
+    <button id="yes">&Sim</button>
+    <button id="no">&Não</button>
+    <button id="abort">&Abortar</button>
+    <button id="ignore">&Ignorar</button>
+    <button id="ok">&OK</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">Uma atualização está disponível.</label>
+    <label id="2">Ela corrige falhas críticas e/ou oferece novas funcionalidades.
+A instalação é obrigatória.
+
+Você quer continuar com a instalação agora?</label>
+    <label id="3">Ela corrige erros menores e/ou erros de tradução.
+
+Você deseja instalar?</label>
+    <label id="4">Atualizando...</label>
+    <label id="5">Falha no download dos componentes!</label>
+    <label id="6">foi atualizado!</label>
+    <label id="7">Nova versão:</label>
+    <label id="8">ficou offline por (n) dias</label>
+    <label id="9">Precisa estar conectado para verificar as possíveis atualizações de segurança obrigatórias.</label>
+    <label id="10">A próxima vez que abrir o programa, tente fazê-lo conectado à internet.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Bemvindo à</label>
+    <label id="2">Esta é a sua primeira vez aqui, por favor escolha a pasta de destino onde os APKs serão criados:</label>
+    <label id="3">Selecione</label>
+    <label id="4">nenhuma pasta selecionada</label>
+    <label id="6">Próximo</label>
+    <label id="11">Pasta de destino de APKs</label>
+    <label id="12">escolha esta pasta</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">Novo projeto</label>
+    <label id="2">vazio</label>
+    <label id="6">Pasta de destino:</label>
+    <label id="7">Mudar</label>
+    <label id="8">About</label>
+    <label id="9">Pasta de destino de APKs</label>
+    <label id="10">escolha esta pasta</label>
+    <label id="11">build</label>
+    <label id="12">modify</label>
+    <label id="13">install</label>
+    <label id="14">delete this project ?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Local program and resources</label>
+    <label id="2">If you wish to compile local BASIC! program and resources to APK, just copy to your target folder the needed files in their EXACT SAME folders and subfolders as on your Android device: your main .bas in "[b]XXX\rfo-basic\source\[/b]" and your resources in "[b]XXX\rfo-basic\data\[/b]" or whatever other folder you placed them in.
+
+There are several cases where you would need to make an APK from a BASIC! program and resources that are *not* on your Android device:
+- you could type and develop directly on your computer, and test via the RFO-BASIC! Launcher
+- or RFO-BASIC! Quick APK could encounter problems communicating with your Android device via both WiFi and USB cable</label>
+    <label id="3">Reminder: your target folder is at the following place:</label>
+    <label id="5">Voltar</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">WiFi connection</label>
+    <label id="2">You need to have the QuickAPK WiFi app installed on your Android device and running (either in foreground or background) with the WiFi activated.
+
+Also, you need your computer and your Android phone or tablet to be on the same LAN (typically your home internet box) in order for them to auto-detect one another.</label>
+    <label id="3">You can download the QuickAPK WiFi app for Android at:</label>
+    <label id="5">Voltar</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">Conexão por cabo USB</label>
+    <label id="2">Você precisar ter o modo "Depuração USB" ativado no seu aparelho:
+A partir do Android 4.2 e versões posteriores, isso pode ser feito indo para Config. > Sobre o telefone e clicando 7 times na linha do "número da versão" para ativar as Opções do desenvolvedor (Nas versões anteriores ao Android 4.2, o menu do desenvolvedor já está disponível na tela de config.). Depois vá para a opção do desenvolvedor e ative a depuração USB.
+
+O seu dispositivo também precisa ser devidamente reconhecido pelo seu computador, ou seja, com os drivers do fabricante instalados. Geralmente isso significa instalar o programa de PC para isso (por exemplo Samsung Kies, Sony PC Companion, etc.)</label>
+    <label id="3">Voltar</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analyzing local file system...</label>
+    <label id="2">Detectando dispositivo conectado...</label>
+    <label id="3">Nenhum dispositivo conectado foi encontrado. Por favor clique um dos botões abaixo</label>
+    <label id="4">RFO-BASIC! não foi encontrado no dispositivo. Instale e tente de novo.</label>
+    <label id="5">Anterior</label>
+    <label id="6">Tentar nov.</label>
+    <label id="7">Próximo</label>
+    <label id="8">Encontrou um</label>
+    <label id="9">Analisando sistema de arquivos do dispositivo...</label>
+    <label id="10">Access local resources on PC</label>
+    <label id="11">Access device resources via WiFi</label>
+    <label id="12">Access device resources via USB</label>
+    <label id="13">read me</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Selecione a pasta/arquivos do programa principal e dos recursos:</label>
+    <label id="3">No .bas found in "XXX\rfo-basic\source\"</label>
+    <label id="4">pasta(s)</label>
+    <label id="5">arquivo(s)</label>
+    <label id="6">selecionado</label>
+    <label id="7">Anterior</label>
+    <label id="8">Refresh</label>
+    <label id="9">Próximo</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Detectando dispositivo conectado...</label>
+    <label id="2">Copiando os arquivos de</label>
+    <label id="12">para o computador...</label>
+    <label id="3">Erro: o dispositivo foi desconectado!</label>
+    <label id="4">Anterior</label>
+    <label id="5">De novo</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Detalhes do aplicativo</label>
+    <label id="2">Nome</label>
+    <label id="4">Versão</label>
+    <label id="6">Ícone (clique o botão ou arraste e solte nesta janela)</label>
+    <label id="7">Change icon</label>
+    <label id="8">Padrão</label>
+    <label id="9">Mostrar configuração avançada na próxima tela</label>
+    <label id="10">Anterior</label>
+    <label id="11">Próximo</label>
+    <label id="12">Por favor use uma imagem quadrada</label>
+    <label id="13">Por favor arraste somente uma imagem</label>
+    <label id="14">Formato de imagem inválido</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">Configuração avançada</label>
+    <label id="2">Pasta do aplicativor</label>
+    <label id="4">Nome do pacote</label>
+    <label id="6">Código da versão</label>
+    <label id="8">Título do console</label>
+    <label id="10">Prompt de entrada</label>
+    <label id="12">Certificado</label>
+    <label id="13">Encrypt .bas files</label>
+    <label id="14">Activate Hardware Acceleration</label>
+    <label id="16">Criar</label>
+    <label id="29">na instalação</label>
+    <label id="18">Iniciar automaticamente ao ligar dispositivo</label>
+    <label id="19">Splash screen / Loading</label>
+    <label id="20">Permissões</label>
+    <label id="21">Aparência do console</label>
+    <label id="22">Copiar recursos para SD</label>
+    <label id="23">Anterior</label>
+    <label id="24">Próximo</label>
+    <label id="25">Usar padrão</label>
+    <label id="26">Usar outro</label>
+    <label id="27">Criar novo</label>
+    <label id="30">Retornar aparência padrão do console</label>
+    <label id="31">Tamanho de fonte</label>
+    <label id="32">Pequeno</label>
+    <label id="33">Médio</label>
+    <label id="34">Grande</label>
+    <label id="35">Tipo de fonte</label>
+    <label id="36">Orientação da tela</label>
+    <label id="37">Variável por sensor</label>
+    <label id="38">Corrigir Paisagem</label>
+    <label id="39">Corrigir Paisagem reversa</label>
+    <label id="40">Corrigir Retrato</label>
+    <label id="41">Corrigir Retrato Reverso</label>
+    <label id="42">Usar Console pautado</label>
+    <label id="43">Cores:</label>
+    <label id="44">Fonte</label>
+    <label id="45">Fundo</label>
+    <label id="46">Vazio</label>
+    <label id="47">Cancelar</label>
+    <label id="48">OK</label>
+    <label id="49">Autodetectar</label>
+    <label id="50">Selecionar todos / nenhum ...</label>
+    <label id="51">The Alias and/or Password provided are incorrect for this keystore, try again:</label>
+    <label id="52">Please enter the Alias and Password for this keystore:</label>
+    <label id="53">Alias:</label>
+    <label id="54">Password:</label>
+    <label id="55">Confirm:</label>
+    <label id="56">You need to specify non-empty Alias and Password</label>
+    <label id="57">Passwords don't match</label>
+    <label id="58">Certificate passwords can only contain characters A to Z, a to z, 0 to 9 and _ $ #</label>
+    <label id="59">A file with this name already exists. Replace?</label>
+    <label id="60">Your certificate has been successfuly created</label>
+    <label id="61">There was a problem while attempting to create your certificate:</label>
+    <label id="62">Your full name:</label>
+    <label id="63">Your organization name:</label>
+    <label id="64">Your organization unit:</label>
+    <label id="65">Your city / locality:</label>
+    <label id="66">Your state / province:</label>
+    <label id="67">Your 2-letter country code:</label>
+    <label id="68">Mensagem</label>
+    <label id="69">Carregando indicador</label>
+    <label id="70">Beware: activating the hardware acceleration will improve the graphic rendering by a time factor of 2 to 10, but it can also have some side effects: anti-alias glitches in gradients, GR.SAVE command not working, etc.
+
+If you are unsure about the consequences, please consider unchecking the hardware acceleration...</label>
+    <label id="71">Progress text</label>
+    <label id="72">Graphical splash screen</label>
+    <label id="73">Change image</label>
+    <label id="74">Background color</label>
+    <label id="75">Reset to default</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">Criando APK...</label>
+    <label id="3">Anterior</label>
+    <label id="4">instalar no seu dispositivo Android via WiFi</label>
+    <label id="5">instalar no seu dispositivo Android via USB</label>
+    <label id="6">abrir a pasta no seu computador</label>
+    <label id="7">converter outro programa para APK</label>
+    <label id="8">Sair</label>
+    <label id="10">Would you like Quick APK to move the local app resources in your home directory from "rfo-basic\data" to a dedicated folder "XXX" ?</label>
+    <label id="13">Sorry! We encountered a problem while trying to build your APK... What do you want to do?</label>
+    <label id="14">Parabéns, APK foi criado com sucesso! O que você quer fazer agora?</label>
+    <label id="16">Installation of your APK in progress...</label>
+    <label id="17">Aplicativo instalado. Abrir no dispositivo?</label>
+    <label id="18">Instalação não funcionou:</label>
+    <label id="20">See the error message</label>
+    <label id="21">Open the easyapk folder for debug</label>
+    <label id="22">Launch verbose build in command line</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Voltar</label>
+  </screen>
+
+</language>

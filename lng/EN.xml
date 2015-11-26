@@ -1,0 +1,233 @@
+screen=<?xml version="1.0" encoding="utf-8"?>
+
+<language code="EN" name="English">
+
+  <buttons>
+    <button id="cancel">&Cancel</button>
+    <button id="retry">&Retry</button>
+    <button id="continue">C&ontinue</button>
+    <button id="yes">&Yes</button>
+    <button id="no">&No</button>
+    <button id="abort">&Abort</button>
+    <button id="ignore">&Ignore</button>
+    <button id="ok">&OK</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">A program update is available.</label>
+    <label id="2">It fixes critical bugs and/or brings new functionalities.
+The installation is mandatory.
+
+Do you want to proceed with the installation now?</label>
+    <label id="3">It fixes minor bugs and/or translation errors.
+
+Do you wish to install it?</label>
+    <label id="4">Updating...</label>
+    <label id="5">Failure in downloading the components!</label>
+    <label id="6">was updated!</label>
+    <label id="7">New version:</label>
+    <label id="8">has been offline for (n) days</label>
+    <label id="9">It needs to be connected to check for potential mandatory security updates.</label>
+    <label id="10">Next time you launch the program please try to do so while connected to internet.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Welcome to</label>
+    <label id="2">This is your first time here, please choose a home directory where your APKs will be created:</label>
+    <label id="3">Select</label>
+    <label id="4">no folder selected</label>
+    <label id="6">Next</label>
+    <label id="11">Quick APK Home directory</label>
+    <label id="12">choose this folder</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">New project</label>
+    <label id="2">empty</label>
+    <label id="6">Home directory:</label>
+    <label id="7">Change</label>
+    <label id="8">About</label>
+    <label id="9">Quick APK Home directory</label>
+    <label id="10">choose this folder</label>
+    <label id="11">build</label>
+    <label id="12">modify</label>
+    <label id="13">install</label>
+    <label id="14">delete this project ?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Local program and resources</label>
+    <label id="2">If you wish to compile local BASIC! program and resources to APK, just copy to your home directory the needed files in their EXACT SAME folders and subfolders as on your Android device: your main .bas in "[b]XXX\rfo-basic\source\[/b]" and your resources in "[b]XXX\rfo-basic\data\[/b]" or whatever other folder you placed them in.
+
+There are several cases where you would need to make an APK from a BASIC! program and resources that are *not* on your Android device:
+- you could type and develop directly on your computer, and test via the RFO-BASIC! Launcher
+- or RFO-BASIC! Quick APK could encounter problems communicating with your Android device via both WiFi and USB cable</label>
+    <label id="3">Reminder: your home directory is the following:</label>
+    <label id="5">Back</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">WiFi connection</label>
+    <label id="2">You need to have the QuickAPK WiFi app installed on your Android device and running (either in foreground or background) with the WiFi activated.
+
+Also, you need your computer and your Android phone or tablet to be on the same LAN (typically your home internet box) in order for them to auto-detect one another.</label>
+    <label id="3">You can download the QuickAPK WiFi app for Android at:</label>
+    <label id="5">Back</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">USB cable connection</label>
+    <label id="2">You need to have the "USB debugging" mode activated on your device:
+Starting with Android 4.2 and newer versions, this can be done by going to Settings > About phone and tapping 7 times on the "Build number" line to activate the Developer Options (in Android versions before 4.2, the Developer menu is already at the root of the Settings screen). Then go to Developer Options and activate Android Debugging.
+
+Also, your device needs to be duly recognized by your computer, i.e. with the proper manufacturer's drivers installed. Most of the time it means to install the manufacturer's PC suite to obtain that (i.e. Samsung Kies, Sony PC Companion, etc.)</label>
+    <label id="3">Back</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analyzing local file system...</label>
+    <label id="2">Detecting plugged device...</label>
+    <label id="3">No plugged device detected. Please click one of the buttons below</label>
+    <label id="4">RFO-BASIC! was not found on your device. Install it and try again.</label>
+    <label id="5">Previous</label>
+    <label id="6">Retry</label>
+    <label id="7">Next</label>
+    <label id="8">Found a</label>
+    <label id="9">Analyzing device file system...</label>
+    <label id="10">Access local resources on PC</label>
+    <label id="11">Access device resources via WiFi</label>
+    <label id="12">Access device resources via USB</label>
+    <label id="13">read me</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Select your main program and your resource folders/files:</label>
+    <label id="3">No .bas found in "XXX\rfo-basic\source\"</label>
+    <label id="4">folder(s)</label>
+    <label id="5">file(s)</label>
+    <label id="6">selected</label>
+    <label id="7">Previous</label>
+    <label id="8">Refresh</label>
+    <label id="9">Next</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Detecting plugged device...</label>
+    <label id="2">Copying files from the</label>
+    <label id="12">to the computer...</label>
+    <label id="3">Error: the device has been unplugged!</label>
+    <label id="4">Previous</label>
+    <label id="5">Retry</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Your app details</label>
+    <label id="2">Name</label>
+    <label id="4">Version</label>
+    <label id="6">Icon (click the change button or drag and drop on this window)</label>
+    <label id="7">Change icon</label>
+    <label id="8">Default</label>
+    <label id="9">Display advanced settings in the next screen</label>
+    <label id="10">Previous</label>
+    <label id="11">Next</label>
+    <label id="12">Please use a square image</label>
+    <label id="13">Please only drop 1 image</label>
+    <label id="14">Not a valid image format</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">advanced settings</label>
+    <label id="2">App folder</label>
+    <label id="4">Package name</label>
+    <label id="6">Version code</label>
+    <label id="8">Console title</label>
+    <label id="10">Input prompt</label>
+    <label id="12">Certificate</label>
+    <label id="13">Encrypt .bas files</label>
+    <label id="14">Activate Hardware Acceleration</label>
+    <label id="16">Create</label>
+    <label id="29">at installation</label>
+    <label id="18">Auto-start your app at device startup</label>
+    <label id="19">Splash screen / Loading</label>
+    <label id="20">Permissions</label>
+    <label id="21">Console look and feel</label>
+    <label id="22">Copy files to SD at startup</label>
+    <label id="23">Previous</label>
+    <label id="24">Next</label>
+    <label id="25">Use default</label>
+    <label id="26">Use another one</label>
+    <label id="27">Create a new one</label>
+    <label id="30">Reset console to default look and feel</label>
+    <label id="31">Font Size</label>
+    <label id="32">Small</label>
+    <label id="33">Medium</label>
+    <label id="34">Large</label>
+    <label id="35">Font Typeface</label>
+    <label id="36">Screen Orientation</label>
+    <label id="37">Variable By Sensors</label>
+    <label id="38">Fixed Landscape</label>
+    <label id="39">Fixed Reverse Landscape</label>
+    <label id="40">Fixed Portrait</label>
+    <label id="41">Fixed Reverse Portrait</label>
+    <label id="42">Use Lined Console</label>
+    <label id="43">Colors:</label>
+    <label id="44">Font</label>
+    <label id="45">Background</label>
+    <label id="46">Empty</label>
+    <label id="47">Cancel</label>
+    <label id="48">OK</label>
+    <label id="49">Autodetect</label>
+    <label id="50">Select all / none ...</label>
+    <label id="51">The Alias and/or Password provided are incorrect for this certificate, try again:</label>
+    <label id="52">Please enter the Alias and Password for this certificate:</label>
+    <label id="53">Alias:</label>
+    <label id="54">Password:</label>
+    <label id="55">Confirm:</label>
+    <label id="56">You need to specify non-empty Alias and Password</label>
+    <label id="57">Passwords don't match</label>
+    <label id="58">Certificate passwords can only contain characters A to Z, a to z, 0 to 9 and _ $ #</label>
+    <label id="59">A file with this name already exists. Replace?</label>
+    <label id="60">Your certificate has been successfuly created</label>
+    <label id="61">There was a problem while attempting to create your certificate:</label>
+    <label id="62">Your full name:</label>
+    <label id="63">Your organization name:</label>
+    <label id="64">Your organization unit:</label>
+    <label id="65">Your city / locality:</label>
+    <label id="66">Your state / province:</label>
+    <label id="67">Your 2-letter country code:</label>
+    <label id="68">Message</label>
+    <label id="69">Loading indicator</label>
+    <label id="70">Beware: activating the hardware acceleration will improve the graphic rendering by a time factor of 2 to 10, but it can also have some side effects: anti-alias glitches in gradients, GR.SAVE command not working, etc.
+
+If you are unsure about the consequences, please consider unchecking the hardware acceleration...</label>
+    <label id="71">Progress text</label>
+    <label id="72">Graphical splash screen</label>
+    <label id="73">Change image</label>
+    <label id="74">Background color</label>
+    <label id="75">Reset to default</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">Creating APK...</label>
+    <label id="3">Previous</label>
+    <label id="4">install it on your device via WiFi</label>
+    <label id="5">install it on your device via USB</label>
+    <label id="6">open its folder on your computer</label>
+    <label id="7">convert another program to APK</label>
+    <label id="8">Leave</label>
+    <label id="10">Would you like Quick APK to move the local app resources in your home directory from "rfo-basic\data" to a dedicated folder "XXX" ?</label>
+    <label id="13">Sorry! We encountered a problem while trying to build your APK... What do you want to do?</label>
+    <label id="14">Congratulations, APK was successfully created! What do you want to do next?</label>
+    <label id="16">Installation of your APK in progress...</label>
+    <label id="17">Application installed. Launch it on the device?</label>
+    <label id="18">Installation didn't work:</label>
+    <label id="20">See the error message</label>
+    <label id="21">Open the easyapk folder for debug</label>
+    <label id="22">Launch verbose build in command line</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Back</label>
+  </screen>
+
+</language>

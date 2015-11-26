@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<language code="FR" name="Français">
+
+  <buttons>
+    <button id="cancel">&Annuler</button>
+    <button id="retry">&Recommencer</button>
+    <button id="continue">&Continuer</button>
+    <button id="yes">&Oui</button>
+    <button id="no">&Non</button>
+    <button id="abort">&Abandonner</button>
+    <button id="ignore">&Ignorer</button>
+    <button id="ok">&OK</button>
+  </buttons>
+
+  <screen id="0">
+    <label id="1">Une mise à jour du programme est disponible.</label>
+    <label id="2">Elle corrige des bugs critiques et/ou apporte de nouvelles fonctionnalités.
+Son installation est obligatoire.
+
+Voulez-vous procéder à son installation maintenant ?</label>
+    <label id="3">Elle corrige des bugs mineurs et/ou rectifie des erreurs de traduction.
+
+Souhaitez-vous l'installer ?</label>
+    <label id="4">Mise à jour en cours</label>
+    <label id="5">Echec du téléchargement des composants !</label>
+    <label id="6">a été mis à jour !</label>
+    <label id="7">Nouvelle version :</label>
+    <label id="8">est hors ligne depuis (n) jours</label>
+    <label id="9">Le programme a besoin d'être connecté pour vérifier de possibles versions de maintenance corrigeant des problèmes de sécurité.</label>
+    <label id="10">Merci d'essayer de connecter votre ordinateur à internet pour le prochain lancement.</label>
+  </screen>
+
+  <screen id="1">
+    <label id="1">Bienvenue dans</label>
+    <label id="2">C'est votre premier lancement, veuillez choisir un répertoire cible où seront créés vos APK :</label>
+    <label id="3">Choisir</label>
+    <label id="4">aucun répertoire sélectionné</label>
+    <label id="6">Suivant</label>
+    <label id="11">Répertoire cible pour les APK</label>
+    <label id="12">choisir ce répertoire</label>
+  </screen>
+
+  <screen id="2">
+    <label id="1">Nouveau projet</label>
+    <label id="2">vide</label>
+    <label id="6">Répertoire cible :</label>
+    <label id="7">Changer</label>
+    <label id="8">A propos</label>
+    <label id="9">Répertoire cible pour les APK</label>
+    <label id="10">choisir ce répertoire</label>
+    <label id="11">compiler</label>
+    <label id="12">modifier</label>
+    <label id="13">installer</label>
+    <label id="14">supprimer ce projet ?</label>
+  </screen>
+
+  <screen id="201">
+    <label id="1">Programme et ressources locaux</label>
+    <label id="2">Si vous souhaitez compiler en APK un programme et des ressources BASIC! en local, copiez simplement vers votre répertoire cible l'ensemble des fichiers nécessaires dans leurs dossiers et sous-dossiers EXACTEMENT TEL QUE sur votre terminal Android : votre .bas principal dans "[b]XXX\rfo-basic\source\[/b]" et vos ressources dans "[b]XXX\rfo-basic\data\[/b]" ou tout autre dossier où vous les avez placées.
+
+Il existe plusieurs cas où vous pouvez avoir besoin de créer un APK depuis un programme et des ressources BASIC! ne se trouvant *pas* sur votre terminal Android :
+- vous pouvez taper et développer directement sur votre ordinateur, et tester via le programme RFO-BASIC! Launcher
+- ou bien RFO-BASIC! Quick APK peut rencontrer des problèmes pour communiquer avec votre terminal Android à la fois en WiFi et via câble USB</label>
+    <label id="3">Rappel: vous avez choisi le répertoire cible suivant pour les APK :</label>
+    <label id="5">Retour</label>
+  </screen>
+
+  <screen id="211">
+    <label id="1">Connexion via WiFi</label>
+    <label id="2">Vous devez avoir l'appli Android "QuickAPK WiFi" installée sur votre appareil et en cours d'exécution (en premier plan ou en arrière plan), avec le WiFi activé.
+
+Il est d'autre part nécessaire que votre ordinateur et votre téléphone ou tablette Android utilisent le même réseau (typiquement votre box ADSL à la maison) afin qu'ils puissent s'auto-détecter.</label>
+    <label id="3">Vous pouvez télécharger l'appli QuickAPK WiFi pour Android depuis :</label>
+    <label id="5">Retour</label>
+  </screen>
+
+  <screen id="221">
+    <label id="1">Connexion par câble USB</label>
+    <label id="2">Vous devez avoir l'option "Débogage USB" activée sur votre téléphone :
+A partir d'Android 4.2, allez dans Réglages > A propos du téléphone et tapez 7 fois sur "Numéro de build" pour activer les Options pour les développeurs (sur les versions d'Android antérieures à 4.2 le menu Développeur est déjà à la racine de l'écran des Réglages). Puis entrez dans les Options pour les développeurs et activez le Débogage USB.
+
+D'autre part, votre téléphone doit être dûment reconnu par votre ordinateur, i.e. avec les pilotes officiels du constructeur installés. La plupart du temps cela implique d'installer la suite logicielle du constructeur (par ex. Samsung Kies, Sony PC Companion, etc.)</label>
+    <label id="3">Retour</label>
+  </screen>
+
+  <screen id="3">
+    <label id="1">Analyse du système de fichiers local...</label>
+    <label id="2">Détection du terminal branché...</label>
+    <label id="3">Aucun terminal branché détecté. Cliquez sur un des boutons ci-dessous</label>
+    <label id="4">RFO-BASIC! n'a pas été trouvé sur votre terminal. Installez le et réessayez.</label>
+    <label id="5">Précédent</label>
+    <label id="6">Réessayer</label>
+    <label id="7">Suivant</label>
+    <label id="8">Trouvé un</label>
+    <label id="9">Analyse du système de fichiers du terminal...</label>
+    <label id="10">Accédez à vos ressources locales sur PC</label>
+    <label id="11">Accédez aux ressources de votre terminal via WiFi</label>
+    <label id="12">Accédez aux ressources de votre terminal via USB</label>
+    <label id="13">lisez moi</label>
+  </screen>
+
+  <screen id="4">
+    <label id="2">Selectionnez le programme principal et vos dossiers/fichiers de ressource :</label>
+    <label id="3">Aucun .bas trouvé dans "XXX\rfo-basic\source\"</label>
+    <label id="4">dossier(s)</label>
+    <label id="5">fichier(s)</label>
+    <label id="6">sélectionné(s)</label>
+    <label id="7">Précédent</label>
+    <label id="8">Actualiser</label>
+    <label id="9">Suivant</label>
+  </screen>
+
+  <screen id="5">
+    <label id="1">Détection du terminal branché...</label>
+    <label id="2">Copie des fichiers depuis votre</label>
+    <label id="12">vers l'ordinateur...</label>
+    <label id="3">Erreur : le téléphone a été débranché !</label>
+    <label id="4">Précédent</label>
+    <label id="5">Réessayer</label>
+  </screen>
+
+  <screen id="6">
+    <label id="1">Votre app en détail</label>
+    <label id="2">Nom</label>
+    <label id="4">Version</label>
+    <label id="6">Icône (via le bouton changer, ou bien glissez-déposez sur cette fenêtre)</label>
+    <label id="7">Changer l'icône</label>
+    <label id="8">Défaut</label>
+    <label id="9">Montrer les paramètres avancés dans le prochain écran</label>
+    <label id="10">Précédent</label>
+    <label id="11">Suivant</label>
+    <label id="12">Merci d'utiliser 1 image carrée</label>
+    <label id="13">Ne déposez qu'1 seule image svp</label>
+    <label id="14">Format d'image incorrect</label>
+  </screen>
+
+  <screen id="7">
+    <label id="1">paramètres avancés</label>
+    <label id="2">Répertoire de l'app</label>
+    <label id="4">Nom de package</label>
+    <label id="6">Code de version</label>
+    <label id="8">Titre de la console</label>
+    <label id="10">Titre lors d'1 saisie</label>
+    <label id="12">Certificat électroniq</label>
+    <label id="13">Chiffrer les fichiers .bas</label>
+    <label id="14">Activer l'accélération matérielle</label>
+    <label id="16">Créer</label>
+    <label id="29">à l'installation</label>
+    <label id="18">Démarrer votre appli au lancement du téléphone</label>
+    <label id="19">Ecran de chargement</label>
+    <label id="20">Permissions</label>
+    <label id="21">Personnalisation console</label>
+    <label id="22">Copier ressources sur la SD</label>
+    <label id="23">Précédent</label>
+    <label id="24">Suivant</label>
+    <label id="25">Celui par défaut</label>
+    <label id="26">Utiliser un autre</label>
+    <label id="27">Créer un nouveau</label>
+    <label id="30">Paramètres de console par défaut</label>
+    <label id="31">Taille de police</label>
+    <label id="32">Petite</label>
+    <label id="33">Moyenne</label>
+    <label id="34">Grande</label>
+    <label id="35">Type de police</label>
+    <label id="36">Orientation écran</label>
+    <label id="37">Variable par capteur</label>
+    <label id="38">Mode paysage fixe</label>
+    <label id="39">Paysage fixe inversé</label>
+    <label id="40">Mode portrait fixe</label>
+    <label id="41">Portrait fixe inversé</label>
+    <label id="42">Activer le soulignage</label>
+    <label id="43">Couleurs :</label>
+    <label id="44">Ecriture</label>
+    <label id="45">Fond</label>
+    <label id="46">Vide</label>
+    <label id="47">Annuler</label>
+    <label id="48">OK</label>
+    <label id="49">Auto-détecter</label>
+    <label id="50">Tout / rien sélectionner...</label>
+    <label id="51">Alias et/ou mot de passe incorrects pour ce certificat, réessayez :</label>
+    <label id="52">Entrez l'alias et le mot de passe pour ce certificat :</label>
+    <label id="53">Alias</label>
+    <label id="54">Mot passe</label>
+    <label id="55">Confirmer</label>
+    <label id="56">Vous devez spécifier un alias et un mot de passe non vides</label>
+    <label id="57">Les mots de passe sont différents</label>
+    <label id="58">Un mot de passe de certificat ne peut contenir que les caractères A à Z, a à z, 0 à 9 et _ $ #</label>
+    <label id="59">Un fichier avec ce nom existe déjà. Remplacer ?</label>
+    <label id="60">Votre certificat a été créé avec succès</label>
+    <label id="61">Erreur lors de la tentative de création de votre certificat:</label>
+    <label id="62">Votre nom complet :</label>
+    <label id="63">Votre société :</label>
+    <label id="64">Votre Direction :</label>
+    <label id="65">Votre ville / localité :</label>
+    <label id="66">Votre état / province :</label>
+    <label id="67">Votre code pays à 2 lettres :</label>
+    <label id="68">Message</label>
+    <label id="69">Indicateur chargement</label>
+    <label id="70">Attention : activer l'accélération matérielle améliorera le rendu des graphiques d'un facteur temps x2 jusqu'à x10, mais cela peut aussi avoir des effets de bord : anti-alias délavé dans les gradients, commande GR.SAVE ne fonctionnant pas, etc.
+
+Si vous n'êtes pas certain des conséquences, veuillez considérer décocher l'accélération matérielle svp...</label>
+    <label id="71">Texte d'avancement</label>
+    <label id="72">Ecran graphique de chargement</label>
+    <label id="73">Changer l'image</label>
+    <label id="74">Couleur de fond</label>
+    <label id="75">Paramètres par défaut</label>
+  </screen>
+
+  <screen id="8">
+    <label id="2">Création de APK...</label>
+    <label id="3">Précédent</label>
+    <label id="4">l'installer sur votre terminal via WiFi</label>
+    <label id="5">l'installer sur votre terminal via USB</label>
+    <label id="6">ouvrir son dossier sur votre ordinateur</label>
+    <label id="7">convertir un autre programme en APK</label>
+    <label id="8">Quitter</label>
+    <label id="10">Voulez-vous que Quick APK déplace les ressources locales de votre appli (dans votre répertoire cible) depuis "rfo-basic\data" vers un dossier dédié "XXX" ?</label>
+    <label id="13">Désolé ! Nous avons rencontré un problème lors de la création de votre APK... Que voulez-vous faire?</label>
+    <label id="14">Félicitations, APK a été créé avec succès ! Que voulez-vous faire ensuite ?</label>
+    <label id="16">Installation de votre APK en cours...</label>
+    <label id="17">Application installée. La lancer sur votre terminal ?</label>
+    <label id="18">Problème lors de l'installation :</label>
+    <label id="20">Voir le message d'erreur</label>
+    <label id="21">Ouvrir le répertoire easyapk pour déboguer</label>
+    <label id="22">Compilation détaillée en ligne de commande</label>
+  </screen>
+
+  <screen id="9">
+    <label id="2">Retour</label>
+  </screen>
+
+</language>
